@@ -1,0 +1,104 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$idc-primary: mat-palette($mat-blue, A200);
+$idc-accent:  mat-palette($mat-green, A700);
+$idc-warn:    mat-palette($mat-red, 400);
+$light-grey: mat-color(mat-palette($mat-grey, 200));
+
+$idc-theme: mat-light-theme($idc-primary, $idc-accent, $idc-warn);
+
+@include angular-material-theme($idc-theme);
+
+$idc-typography: mat-typography-config(
+	$font-family: '"Open Sans", "Helvetica Neue", sans-serif'
+);
+
+@include angular-material-typography($idc-typography);
+
+
+html, body, #map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  position: absolute;
+  z-index: 1;
+}
+
+mat-toolbar {
+	height: 64px!important;
+	padding: 0 0 0 20px!important;
+  background: white!important;
+  z-index: 1000;
+  position: absolute;
+}
+
+.accent {
+	color: mat-color($idc-accent);
+	font-weight: 700;
+}
+
+.example-fill-remaining-space {
+	flex: 1 1 auto;
+}
+
+
+.nav-icon {
+	margin: 0 18px 0 0;
+	color: mat-color(mat-palette($mat-grey, 400));
+}
+.search-icon {
+	color: mat-color(mat-palette($mat-grey, 400));
+	margin: 0 0 0 15px;
+	font-size: 24px!important;
+	position: absolute;
+	top: 12px;
+	right: 0px;
+}
+.nav-element {
+	margin: 0 25px 0 0;
+}
+
+.mat-input-element {
+	padding-right: 40px!important;
+}
+
+.divider {
+	border-left: 1px solid $light-grey;
+	height: 36px;
+	padding: 0 10px;
+}
+
+.nav-bg-grey {
+	min-width: 150px;
+	max-width: 300px;
+	width: 100%;
+	margin: 0 25px 0 0;
+	padding: 0 20px;
+	font-size: 14px;
+	font-style: oblique;
+	color: mat-color(mat-palette($mat-grey, 400));
+	background-color: #f3f3f3;
+	height: 64px;
+}
+
+#form-search {
+	margin-top: 8px;
+}
+.mat-form-field-underline {
+	color: #eee!important;
+	background: #eee!important;
+	bottom: 0!important;
+	height: 0!important;
+}
+.mat-form-field-underline .mat-form-field-ripple {
+	height: 0!important;
+}
+
+.example-full-width {
+	width: 100%;
+}
