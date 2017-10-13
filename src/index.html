@@ -47,6 +47,37 @@
       // We are using a div with id="map" seen below in the <body>
       var mapElement = document.getElementById('map')
 
+      var hoverWindowContent = '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+        '<div id="bodyContent">' +
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the ' +
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
+        'south west of the nearest large town, Alice Springs; 450&#160;km ' +
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major ' +
+        'features of the Uluru - Kata Tjuta National Park. Uluru is ' +
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the ' +
+        'Aboriginal people of the area. It has many springs, waterholes, ' +
+        'rock caves and ancient paintings. Uluru is listed as a World ' +
+        'Heritage Site.</p>' +
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
+        '(last visited June 22, 2009).</p>' +
+        '</div>' +
+        '</div>';
+
+      var clickWindowContent = '<div>Right Mate!</div>';
+        
+      var hoverWindow = new google.maps.InfoWindow({
+        content: hoverWindowContent
+      });
+
+      var clickWindow = new google.maps.InfoWindow({
+        content: clickWindowContent
+      });
+      
       // Create the Google Map using our element and options defined above
       var map = new google.maps.Map(mapElement, mapOptions)
 
@@ -57,37 +88,57 @@
         title: 'Snazzy!'
       })
 
-    google.maps.event.addListener(map, 'center_changed', function () {
-      checkBounds(map);
-    });
-    // If the map position is out of range, move it back
-    function checkBounds(map) {
+      var clickWindowOpen = false;
 
-      var latNorth = map.getBounds().getNorthEast().lat();
-      var latSouth = map.getBounds().getSouthWest().lat();
-      var newLat;
+      marker.addListener('mouseover', function () {
+        if (clickWindowOpen === false) {
+          hoverWindow.open(map, marker);
+        }
+      });
+      marker.addListener('mouseout', function () {
+        if (clickWindowOpen === false) {
+          hoverWindow.close(map, marker);
+        }
+      });
+      marker.addListener('click', function () {
+        clickWindow.open(map, marker);
+        hoverWindow.close(map, marker);
+        clickWindowOpen = true;
+        sidenav.toggle();
+      });
 
-      if (latNorth < 85 && latSouth > -85)     /* in both side -> it's ok */
-        return;
-      else {
-        if (latNorth > 85 && latSouth < -85)   /* out both side -> it's ok */
+      google.maps.event.addListener(clickWindow, 'closeclick', function() {
+        clickWindowOpen = false;
+      });
+
+      // If the map position is out of range, move it back
+      function checkBounds(map) {
+
+        var latNorth = map.getBounds().getNorthEast().lat();
+        var latSouth = map.getBounds().getSouthWest().lat();
+        var newLat;
+
+        if (latNorth < 85 && latSouth > -85)     /* in both side -> it's ok */
           return;
         else {
-          if (latNorth > 85)
-            newLat = map.getCenter().lat() - (latNorth - 85);   /* too north, centering */
-          if (latSouth < -85)
-            newLat = map.getCenter().lat() - (latSouth + 85);   /* too south, centering */
+          if (latNorth > 85 && latSouth < -85)   /* out both side -> it's ok */
+            return;
+          else {
+            if (latNorth > 85)
+              newLat = map.getCenter().lat() - (latNorth - 85);   /* too north, centering */
+            if (latSouth < -85)
+              newLat = map.getCenter().lat() - (latSouth + 85);   /* too south, centering */
+          }
+        }
+        if (newLat) {
+          var newCenter = new google.maps.LatLng(newLat, map.getCenter().lng());
+          map.setCenter(newCenter);
         }
       }
-      if (newLat) {
-        var newCenter = new google.maps.LatLng(newLat, map.getCenter().lng());
-        map.setCenter(newCenter);
-      }
-    }
 
-      
-      
-      
+
+
+
     }
 
   </script>
