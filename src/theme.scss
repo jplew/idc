@@ -18,13 +18,18 @@ $idc-typography: mat-typography-config(
 @include angular-material-typography($idc-typography);
 
 
-html, body, #map {
+html, body, #map, agm-map {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 #map {
+  position: absolute;
+  z-index: 1;
+}
+
+agm-map {
   position: absolute;
   z-index: 1;
 }
@@ -41,8 +46,9 @@ mat-toolbar {
 }
 .overlay {
   z-index: 1000;
-  position: relative;
+  position: absolute;
   top: 100px;
+  right: 20px;
 }
 
 .accent {

@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppComponent } from './app.component'
 import { MaterialModule } from './material.module'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { AgmCoreModule } from '@agm/core'
+
 import { NavbarComponent } from './navbar/navbar.component'
 import { MapComponent } from './map/map.component'
 
@@ -18,7 +20,10 @@ import { MapComponent } from './map/map.component'
     BrowserModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD6PIv2LqGHNs_UVGWJo4vcACTXeh5fmys'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
