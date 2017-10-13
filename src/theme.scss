@@ -35,6 +35,14 @@ mat-toolbar {
   background: white!important;
   z-index: 1000;
   position: absolute;
+  -webkit-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.25);
+  -moz-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.25);
+  box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.25);
+}
+.overlay {
+  z-index: 1000;
+  position: relative;
+  top: 100px;
 }
 
 .accent {
@@ -45,7 +53,6 @@ mat-toolbar {
 .example-fill-remaining-space {
 	flex: 1 1 auto;
 }
-
 
 .nav-icon {
 	margin: 0 18px 0 0;
@@ -101,4 +108,29 @@ mat-toolbar {
 
 .example-full-width {
 	width: 100%;
+}
+.icon-reverse {
+  color: white;
+}
+.mat-button-toggle {
+  background-color: white;
+}
+.mat-button-toggle-checked {
+  background-color: mat-color($idc-accent);
+	color: white;
+}
+
+.example-sidenav-fab-container {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+.example-sidenav-fab-container mat-sidenav {
+  max-width: 330px;
+}
+.sidebar {
+  padding: 40px 20px 0;
+}
+.col-toggle-buttons {
+  margin-right: 25px;
 }
