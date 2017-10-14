@@ -135,8 +135,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   checkBounds() {
 
-    // console.log(center.lat)
-
     const map = this.mapElement._mapsWrapper
     const ln = map.getBounds()
       .then((latLngBounds) => {
