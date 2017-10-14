@@ -11,7 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { MapComponent } from './map/map.component'
 import { MapAccessorService } from './services/map-accessor.service'
 import { MarkerAccessorDirective } from './directives/marker-accessor.directive';
-import { HoverWindowComponent } from './hover-window/hover-window.component'
+import { HoverWindowComponent } from './hover-window/hover-window.component';
+import { MapChildComponent } from './map-child/map-child.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HoverWindowComponent } from './hover-window/hover-window.component'
     NavbarComponent,
     MapComponent,
     MarkerAccessorDirective,
-    HoverWindowComponent
+    HoverWindowComponent,
+    MapChildComponent
   ],
   imports: [
     BrowserModule,

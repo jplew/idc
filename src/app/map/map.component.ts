@@ -3,14 +3,21 @@ import { GoogleMap } from '@agm/core/services/google-maps-types'
 import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
 
+declare var google: any
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html'
 })
 export class MapComponent implements OnInit, AfterViewInit {
 
+  map: any
   myMap: any
-  @ViewChild(AgmMap) mapElement: AgmMap
+  @ViewChild(AgmMap) mapElement: any
+  centerLat: number
+  centerLng: number
+  latNorth: number
+  latSouth: number
 
   lat: number
   lng: number
@@ -76,6 +83,17 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.lng = 7.809007
   }
 
+  public loadAPIWrapper(map) {
+    console.log('I was loaded')
+    this.map = map
+  }
+
+  public markerClicked = (markerObj) => {
+    console.log('I got clicked!')
+    const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
+    this.map.panTo(position)
+  }
+
   ngOnInit() {
 
     this._apiWrapper.getNativeMap()
@@ -115,45 +133,56 @@ export class MapComponent implements OnInit, AfterViewInit {
     // console.log(this._mapAccessor.agmMarkers)
   }
 
-  checkBounds(map) {
+  checkBounds() {
 
-    // console.log(map)
-    // this._map.getBounds().then( (x) => console.log(x))
+    // console.log(center.lat)
 
-    this.mapElement._mapsWrapper.setZoom(10)
+    const map = this.mapElement._mapsWrapper
+    const ln = map.getBounds()
+      .then((latLngBounds) => {
+        return latLngBounds.getNorthEast().lat()
+      })
+    ln.then(x => this.latNorth = x)
 
-    // const latNorth = this._mapsWrapper.getBounds()
-    //   .then( (data) => {
-    //     console.log(data)
-    //   })
-    //   .catch( err => console.log(err))
-    //       // .then( data => data.lat())
-    // console.log(latNorth)
-    // latNorth.then( res => console.log(res))
-    // console.log(latNorth)
+    const ls = map.getBounds()
+      .then((latLngBounds) => {
+        return latLngBounds.getSouthWest().lat()
+      })
+    ls.then(x => this.latSouth = x)
 
-    // const latNorth = map.getBounds().getNorthEast().lat()
-    // const latSouth = map.getBounds().getSouthWest().lat()
-    // let newLat
+    // console.log('Lat North: ', this.latNorth)
+    // console.log('Lat South: ', this.latSouth)
 
-    // if (latNorth < 85 && latSouth > -85) {
-    //   return
-    // } else {
-    //   if (latNorth > 85 && latSouth < -85) {
-    //     return
-    //   } else {
-    //     if (latNorth > 85) {
-    //       newLat = map.getCenter().lat() - (latNorth - 85)
-    //     }
-    //     if (latSouth < -85) {
-    //       newLat = map.getCenter().lat() - (latSouth + 85)
-    //     }
-    //   }
-    // }
-    // if (newLat) {
-    //   // const newCenter = new google.maps.LatLng(newLat, map.getCenter().lng())
-    //   // map.setCenter(newCenter)
-    // }
+    let newLat
+
+    if (this.latNorth < 85 && this.latSouth > -85) {
+      return
+    } else {
+      if (this.latNorth > 85 && this.latSouth < -85) {
+        return
+      } else {
+        if (this.latNorth > 85) {
+
+          map.getCenter().then((center) => {
+            this.centerLat = center.lat()
+            this.centerLng = center.lng()
+          })
+          newLat = this.centerLat - (this.latNorth - 85)
+        }
+        if (this.latSouth < -85) {
+
+          map.getCenter().then((center) => {
+            this.centerLat = center.lat()
+            this.centerLng = center.lng()
+          })
+          newLat = this.centerLat - (this.latSouth - 85)
+        }
+      }
+    }
+    if (newLat) {
+      const newCenter = new google.maps.LatLng(newLat, this.centerLng)
+      map.setCenter(newCenter)
+    }
   }
 
 

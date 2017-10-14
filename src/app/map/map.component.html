@@ -17,12 +17,14 @@
 
   (mapClick)="mapClicked($event)"
   (mapReady)="mapReady($event)"
-  (centerChange)="checkBounds($event)"
-  >
+  (centerChange)="checkBounds()"
 
+  >
+  
   <agm-marker 
       *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, m.lat, m.lng, i)"
+
+      (markerClick)='markerClicked(m)'
       (mouseover)="mouseoverMarker(m.label, i)"
       (mouseout)="mouseoutMarker(m.label, i)"
       [latitude]="m.lat"
@@ -41,6 +43,8 @@
 
     <app-hover-window [data]="m.data">
     </app-hover-window>
+
+    <app-map-child (onMapLoad)='loadAPIWrapper($event)'></app-map-child>
     
   </agm-marker>
 
