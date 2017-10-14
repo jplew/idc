@@ -5,16 +5,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppComponent } from './app.component'
 import { MaterialModule } from './material.module'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { AgmCoreModule } from '@agm/core'
+import { AgmCoreModule, GoogleMapsAPIWrapper, MarkerManager, AgmMarker } from '@agm/core'
 
 import { NavbarComponent } from './navbar/navbar.component'
 import { MapComponent } from './map/map.component'
+import { MapAccessorService } from './services/map-accessor.service'
+import { MarkerAccessorDirective } from './directives/marker-accessor.directive';
+import { HoverWindowComponent } from './hover-window/hover-window.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    MapComponent
+    MapComponent,
+    MarkerAccessorDirective,
+    HoverWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,7 @@ import { MapComponent } from './map/map.component'
       apiKey: 'AIzaSyD6PIv2LqGHNs_UVGWJo4vcACTXeh5fmys'
     })
   ],
-  providers: [],
+  providers: [AgmMarker, MapAccessorService, GoogleMapsAPIWrapper, MarkerManager],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -48,7 +48,7 @@ mat-toolbar {
   z-index: 1000;
   position: absolute;
   top: 100px;
-  right: 20px;
+  right: 100px;
 }
 
 .accent {
@@ -132,10 +132,10 @@ mat-toolbar {
   background: none;
 }
 .example-sidenav-fab-container mat-sidenav {
-  max-width: 330px;
+  max-width: 332px;
 }
 .sidebar {
-  padding: 40px 20px 0;
+  padding: 100px 20px 0;
 }
 .col-toggle-buttons {
   margin-right: 25px;
