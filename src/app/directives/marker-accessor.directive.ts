@@ -25,11 +25,13 @@ export class MarkerAccessorDirective implements OnInit, OnDestroy {
     private el: ElementRef
   ) {
     // console.log(el.nativeElement)
-    this._mapAccessor.agmMarkers.push(el.nativeElement)
+    // this._mapAccessor.agmMarkers.push(el.nativeElement)
   }
 
   ngOnInit(): void {
-    this._mapAccessor.addMarker(this.appMarkerAccessor, this._markerComponent)
+
+    // this._mapAccessor.addMarker(this.appMarkerAccessor, this._markerComponent)
+
     const myMarker = this._mapAccessor.getMarker(this.appMarkerAccessor)
     console.log(myMarker)
 
@@ -60,11 +62,6 @@ export class MarkerAccessorDirective implements OnInit, OnDestroy {
             })
           })
       })
-
-    //   w.open(map, marker))
-    //       console.log(marker)
-    //   })
-    // this._mapsWrapper.getNativeMap().then((map) => w.open(map, marker));
 
   }
 

@@ -10,9 +10,10 @@ import { AgmCoreModule, GoogleMapsAPIWrapper, MarkerManager, AgmMarker } from '@
 import { NavbarComponent } from './navbar/navbar.component'
 import { MapComponent } from './map/map.component'
 import { MapAccessorService } from './services/map-accessor.service'
-import { MarkerAccessorDirective } from './directives/marker-accessor.directive';
-import { HoverWindowComponent } from './hover-window/hover-window.component';
+import { MarkerAccessorDirective } from './directives/marker-accessor.directive'
+import { HoverWindowComponent } from './hover-window/hover-window.component'
 import { MapChildComponent } from './map-child/map-child.component'
+import { UiService } from './services/ui.service'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,13 @@ import { MapChildComponent } from './map-child/map-child.component'
       apiKey: 'AIzaSyD6PIv2LqGHNs_UVGWJo4vcACTXeh5fmys'
     })
   ],
-  providers: [AgmMarker, MapAccessorService, GoogleMapsAPIWrapper, MarkerManager],
+  providers: [
+    AgmMarker,
+    MapAccessorService,
+    GoogleMapsAPIWrapper,
+    MarkerManager,
+    UiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

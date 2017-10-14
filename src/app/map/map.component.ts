@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core'
 import { GoogleMap } from '@agm/core/services/google-maps-types'
 import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
+import { UiService } from '../services/ui.service'
 
 declare var google: any
 
@@ -71,11 +72,12 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   tmpValue: any
 
-  clickedMarker(label: string, latitude: number, longitude: number, index: number) {
-    console.log(`clicked the marker: ${latitude}, ${longitude}, ${label}, ${index}`)
-  }
+  // clickedMarker(label: string, latitude: number, longitude: number, index: number) {
+  //   console.log(`clicked the marker: ${latitude}, ${longitude}, ${label}, ${index}`)
+  // }
 
   constructor(
+    private uiService: UiService,
     private _apiWrapper: GoogleMapsAPIWrapper,
     private _mapAccessor: MapAccessorService,
     private _markerManager: MarkerManager) {
@@ -90,19 +92,21 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   public markerClicked = (markerObj) => {
     console.log('I got clicked!')
-    const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
-    this.map.panTo(position)
+    console.log(markerObj)
+    this.uiService.open()
+    // const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
+    // this.map.panTo(position)
   }
 
   ngOnInit() {
 
-    this._apiWrapper.getNativeMap()
-      .then((map: GoogleMap) => {
-        this.myMap = map
-        console.log(map)
-        this._mapAccessor.nativeMap = map
-        this._mapAccessor.markerManager = this._markerManager
-      })
+    // this._apiWrapper.getNativeMap()
+    //   .then((map: GoogleMap) => {
+    //     this.myMap = map
+    //     console.log(map)
+    //     this._mapAccessor.nativeMap = map
+    //     this._mapAccessor.markerManager = this._markerManager
+    //   })
   }
 
   ngAfterViewInit(): void {
@@ -111,7 +115,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   mapClicked($event: MouseEvent) {
     console.log('I was clicked')
-    console.log(this)
+    // console.log(this)
     // this.markers.push({
     //   lat: $event.coords.lat,
     //   lng: $event.coords.lng
