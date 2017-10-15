@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { HttpModule } from '@angular/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppComponent } from './app.component'
@@ -14,6 +15,9 @@ import { MarkerAccessorDirective } from './directives/marker-accessor.directive'
 import { HoverWindowComponent } from './hover-window/hover-window.component'
 import { MapChildComponent } from './map-child/map-child.component'
 import { UiService } from './services/ui.service'
+import { DataService } from './services/data.service';
+import { HoverTableComponent } from './hover-table/hover-table.component';
+import { ClickWindowComponent } from './click-window/click-window.component'
 
 @NgModule({
   declarations: [
@@ -22,10 +26,13 @@ import { UiService } from './services/ui.service'
     MapComponent,
     MarkerAccessorDirective,
     HoverWindowComponent,
-    MapChildComponent
+    MapChildComponent,
+    HoverTableComponent,
+    ClickWindowComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
@@ -38,7 +45,8 @@ import { UiService } from './services/ui.service'
     MapAccessorService,
     GoogleMapsAPIWrapper,
     MarkerManager,
-    UiService
+    UiService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

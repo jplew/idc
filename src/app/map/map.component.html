@@ -1,4 +1,4 @@
-<agm-map 
+<agm-map #gm 
   [latitude] = "lat" 
   [longitude] = "lng"
   [zoom] = "3"
@@ -20,28 +20,27 @@
   (centerChange)="checkBounds()"
 
   >
+      <!-- [label]="m.label" -->
   
   <agm-marker 
       *ngFor="let m of markers; let i = index"
 
-      (markerClick)='markerClicked(m)'
-      (mouseover)="mouseoverMarker(m.label, i)"
-      (mouseout)="mouseoutMarker(m.label, i)"
+      (markerClick)="markerClicked(m); gm.lastOpen?.close(); gm.lastOpen = infoWindow;"
       [latitude]="m.lat"
       [longitude]="m.lng"
-      [label]="m.label"
-      [title]="m.title"
-      [zIndex]="2000"
+      [iconUrl]="(m.goodYield === true) ? iconGood : iconBad"
+      [title]="m.location"
+      [zIndex]="1"
       [markerDraggable]=false
       [openInfoWindow]=true
-      [appMarkerAccessor]="m.data"
+      [appMarkerAccessor]="m.yieldData"
       >
       
-    <agm-info-window>
-      <strong>My Custom Content</strong>
+    <agm-info-window #infoWindow>
+      <app-click-window></app-click-window>
     </agm-info-window>
 
-    <app-hover-window [data]="m.data">
+    <app-hover-window [location]="m.location" [data]="m.yieldData">
     </app-hover-window>
 
     <app-map-child (onMapLoad)='loadAPIWrapper($event)'></app-map-child>

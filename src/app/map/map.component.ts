@@ -1,8 +1,9 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core'
+import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren } from '@angular/core'
 import { GoogleMap } from '@agm/core/services/google-maps-types'
-import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core'
+import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper, AgmInfoWindow } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
 import { UiService } from '../services/ui.service'
+import { DataService } from '../services/data.service'
 
 declare var google: any
 
@@ -15,60 +16,19 @@ export class MapComponent implements OnInit, AfterViewInit {
   map: any
   myMap: any
   @ViewChild(AgmMap) mapElement: any
+  @ViewChildren(AgmInfoWindow) infoWindow: any
   centerLat: number
   centerLng: number
   latNorth: number
   latSouth: number
 
+  markers: any[]
+
   lat: number
   lng: number
 
-  markers: any[] = [
-    {
-      lat: 49.673858,
-      lng: 6.815982,
-      title: 'Devil',
-      label: 'D',
-      data: {
-        name: 'Roger',
-        status: 'Sigma',
-        alert: 'Alpha',
-      }
-    },
-    {
-      lat: 51.673858,
-      lng: 7.815982,
-      title: 'Angel',
-      label: 'A',
-      data: {
-        name: 'Roger',
-        status: 'Sigma',
-        alert: 'Alpha',
-      }
-    },
-    {
-      lat: 61.373858,
-      lng: 8.215982,
-      title: 'Buffalo',
-      label: 'B',
-      data: {
-        name: 'Roger',
-        status: 'Sigma',
-        alert: 'Alpha',
-      }
-    },
-    {
-      lat: 71.723858,
-      lng: 9.895982,
-      title: 'Carnival',
-      label: 'C',
-      data: {
-        name: 'Roger',
-        status: 'Sigma',
-        alert: 'Alpha',
-      }
-    }
-  ]
+  iconGood = '../../assets/images/location-green.png'
+  iconBad  = '../../assets/images/location-red.png'
 
   tmpValue: any
 
@@ -77,6 +37,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   // }
 
   constructor(
+    private dataService: DataService,
     private uiService: UiService,
     private _apiWrapper: GoogleMapsAPIWrapper,
     private _mapAccessor: MapAccessorService,
@@ -89,17 +50,29 @@ export class MapComponent implements OnInit, AfterViewInit {
     console.log('I was loaded')
     this.map = map
   }
-
   public markerClicked = (markerObj) => {
-    console.log('I got clicked!')
-    console.log(markerObj)
+
+    console.log(this.infoWindow)
+
+    // console.log(markerObj)
     this.uiService.open()
+
+    // hoverWindow.close(map, marker);
+
     // const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
     // this.map.panTo(position)
   }
 
   ngOnInit() {
-
+    this.dataService.getAll()
+      .subscribe(
+        response => {
+          this.markers = response.json()
+          console.log(this.markers)
+        },
+        error => {
+          console.log(error)
+        })
     // this._apiWrapper.getNativeMap()
     //   .then((map: GoogleMap) => {
     //     this.myMap = map
@@ -113,8 +86,13 @@ export class MapComponent implements OnInit, AfterViewInit {
     // this.registerEventHandlers()
   }
 
+
   mapClicked($event: MouseEvent) {
-    console.log('I was clicked')
+    // console.log('I was clicked')
+    this.infoWindow.forEach(element => {
+      element.close()
+    })
+    this.uiService.toggle()
     // console.log(this)
     // this.markers.push({
     //   lat: $event.coords.lat,

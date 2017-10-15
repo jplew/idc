@@ -1,0 +1,17 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+
+    <!-- Name Column -->
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+
+    <!-- Weight Column -->
+      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+
+  </mat-table>
+</div>

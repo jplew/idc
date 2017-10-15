@@ -13,6 +13,7 @@ export class UiService {
   }
 
   public open(): Promise<MatDrawerToggleResult> {
+    // console.log(this.sidenav)
     return this.sidenav.open()
   }
 

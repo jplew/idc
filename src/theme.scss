@@ -12,7 +12,7 @@ $idc-theme: mat-light-theme($idc-primary, $idc-accent, $idc-warn);
 @include angular-material-theme($idc-theme);
 
 $idc-typography: mat-typography-config(
-	$font-family: '"Open Sans", "Helvetica Neue", sans-serif'
+  $font-family: '"Open Sans", "Helvetica Neue", sans-serif'
 );
 
 @include angular-material-typography($idc-typography);
@@ -35,8 +35,8 @@ agm-map {
 }
 
 mat-toolbar {
-	height: 64px!important;
-	padding: 0 0 0 20px!important;
+  height: 64px!important;
+  padding: 0 0 0 20px!important;
   background: white!important;
   z-index: 1000;
   position: absolute;
@@ -51,69 +51,78 @@ mat-toolbar {
   right: 100px;
 }
 
+$primary: mat-color($idc-primary);
+$accent: mat-color($idc-accent);
+$warn: mat-color($idc-warn);
+
 .accent {
-	color: mat-color($idc-accent);
-	font-weight: 700;
+  color: mat-color($idc-accent);
+  font-weight: 700;
+}
+
+.warn {
+  color: mat-color($idc-warn);
+  font-weight: 700;
 }
 
 .example-fill-remaining-space {
-	flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .nav-icon {
-	margin: 0 18px 0 0;
-	color: mat-color(mat-palette($mat-grey, 400));
+  margin: 0 18px 0 0;
+  color: mat-color(mat-palette($mat-grey, 400));
 }
 .search-icon {
-	color: mat-color(mat-palette($mat-grey, 400));
-	margin: 0 0 0 15px;
-	font-size: 24px!important;
-	position: absolute;
-	top: 12px;
-	right: 0px;
+  color: mat-color(mat-palette($mat-grey, 400));
+  margin: 0 0 0 15px;
+  font-size: 24px!important;
+  position: absolute;
+  top: 12px;
+  right: 0px;
 }
 .nav-element {
-	margin: 0 25px 0 0;
+  margin: 0 25px 0 0;
 }
 
 .mat-input-element {
-	padding-right: 40px!important;
+  padding-right: 40px!important;
 }
 
 .divider {
-	border-left: 1px solid $light-grey;
-	height: 36px;
-	padding: 0 10px;
+  border-left: 1px solid $light-grey;
+  height: 36px;
+  padding: 0 10px;
 }
 
 .nav-bg-grey {
-	min-width: 150px;
-	max-width: 300px;
-	width: 100%;
-	margin: 0 25px 0 0;
-	padding: 0 20px;
-	font-size: 14px;
-	font-style: oblique;
-	color: mat-color(mat-palette($mat-grey, 400));
-	background-color: #f3f3f3;
-	height: 64px;
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+  margin: 0 25px 0 0;
+  padding: 0 20px;
+  font-size: 14px;
+  font-style: oblique;
+  color: mat-color(mat-palette($mat-grey, 400));
+  background-color: #f3f3f3;
+  height: 64px;
 }
 
 #form-search {
-	margin-top: 8px;
+  margin-top: 8px;
 }
 .mat-form-field-underline {
-	color: #eee!important;
-	background: #eee!important;
-	bottom: 0!important;
-	height: 0!important;
+  color: #eee!important;
+  background: #eee!important;
+  bottom: 0!important;
+  height: 0!important;
 }
 .mat-form-field-underline .mat-form-field-ripple {
-	height: 0!important;
+  height: 0!important;
 }
 
 .example-full-width {
-	width: 100%;
+  width: 100%;
 }
 .icon-reverse {
   color: white;
@@ -123,7 +132,7 @@ mat-toolbar {
 }
 .mat-button-toggle-checked {
   background-color: mat-color($idc-accent);
-	color: white;
+  color: white;
 }
 
 .example-sidenav-fab-container {
@@ -139,4 +148,56 @@ mat-toolbar {
 }
 .col-toggle-buttons {
   margin-right: 25px;
+}
+.hover-window-content {
+  z-index: 1000;
+  padding-right: 0;
+  // width: 120px;
+}
+.hover-window-content > .gm-style-iw {
+  padding-right: 0;
+}
+.hover-window-content > hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);	
+  margin-bottom: 15px;
+}
+.hover-window-content > .yield-data {
+  margin-bottom: 5px;
+  color: mat-color(mat-palette($mat-grey, 800));
+  font-weight: 400;
+}
+.hover-window-content > h2.title {
+  margin-bottom: 10px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  // min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+.hover-table-icon {
+  width: 25px;
+}
+.hover-table-cat {
+  width: 40px;
+}
+.hover-table-value {
+  font-weight: 900!important;
+  width: 40px;
+  text-align: right;
+}
+.text-green {
+  color: $accent;
+}
+.text-red {
+  color: $warn;
 }

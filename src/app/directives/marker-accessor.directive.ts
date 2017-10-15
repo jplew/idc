@@ -32,8 +32,8 @@ export class MarkerAccessorDirective implements OnInit, OnDestroy {
 
     // this._mapAccessor.addMarker(this.appMarkerAccessor, this._markerComponent)
 
-    const myMarker = this._mapAccessor.getMarker(this.appMarkerAccessor)
-    console.log(myMarker)
+    // const myMarker = this._mapAccessor.getMarker(this.appMarkerAccessor)
+    // console.log(myMarker)
 
     // console.log(this._mapAccessor.getMarkerManager)
 
@@ -57,6 +57,9 @@ export class MarkerAccessorDirective implements OnInit, OnDestroy {
                 w.open(map, marker)
               })
               marker.addListener('mouseout', () => {
+                w.close()
+              })
+              marker.addListener('click', () => {
                 w.close()
               })
             })
