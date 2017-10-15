@@ -11,7 +11,7 @@ import { MatSidenav } from '@angular/material'
 export class AppComponent implements OnInit {
   title = 'app'
 
-  @ViewChild(MatSidenav) public sidenav: MatSidenav
+  @ViewChild( MatSidenav ) public sidenav: MatSidenav
 
   constructor(private uiService: UiService) {
 

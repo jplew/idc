@@ -7,6 +7,7 @@ import { AppComponent } from './app.component'
 import { MaterialModule } from './material.module'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AgmCoreModule, GoogleMapsAPIWrapper, MarkerManager, AgmMarker } from '@agm/core'
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window'
 
 import { NavbarComponent } from './navbar/navbar.component'
 import { MapComponent } from './map/map.component'
@@ -38,7 +39,8 @@ import { ClickWindowComponent } from './click-window/click-window.component'
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6PIv2LqGHNs_UVGWJo4vcACTXeh5fmys'
-    })
+    }),
+    AgmSnazzyInfoWindowModule
   ],
   providers: [
     AgmMarker,

@@ -5,17 +5,22 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  OnInit
+  OnInit,
+  ViewChildren,
+  ContentChildren,
+  AfterContentInit
 } from '@angular/core'
 import { MarkerManager, AgmMarker, GoogleMapsAPIWrapper } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
+import { AgmSnazzyInfoWindow } from '@agm/snazzy-info-window'
 
 @Directive({
   selector: '[appMarkerAccessor]'
 })
-export class MarkerAccessorDirective implements OnInit, OnDestroy {
+export class MarkerAccessorDirective implements OnInit, OnDestroy, AfterContentInit {
 
   @Input() appMarkerAccessor: any
+  @ContentChildren(AgmSnazzyInfoWindow) snazzyIW: any
 
   constructor(
     @Host() private _markerComponent: AgmMarker,
@@ -28,43 +33,65 @@ export class MarkerAccessorDirective implements OnInit, OnDestroy {
     // this._mapAccessor.agmMarkers.push(el.nativeElement)
   }
 
-  ngOnInit(): void {
-
-    // this._mapAccessor.addMarker(this.appMarkerAccessor, this._markerComponent)
-
-    // const myMarker = this._mapAccessor.getMarker(this.appMarkerAccessor)
-    // console.log(myMarker)
-
-    // console.log(this._mapAccessor.getMarkerManager)
-
-    // const nativeMarker = this._manager.getNativeMarker(this._markerComponent)
-    // console.log(nativeMarker)
-
-    // this._infoWindows.get(infoWindow).then((w) => {
-
-    // console.log(this.el.nativeElement.querySelector('.agm-info-window-content'))
-
-    // console.log(this.el.nativeElement.getAttribute('latitude'))
+  ngAfterContentInit(): void {
 
     this._mapsWrapper.getNativeMap()
       .then((map) => {
         this._manager.getNativeMarker(this._markerComponent)
           .then((marker) => {
             const options = {content: this.el.nativeElement.querySelector('.hover-window-content')}
-            this._mapsWrapper.createInfoWindow(options)
-            .then( (w) => {
-              marker.addListener('mouseover', () => {
-                w.open(map, marker)
-              })
-              marker.addListener('mouseout', () => {
-                w.close()
-              })
-              marker.addListener('click', () => {
-                w.close()
-              })
+
+            // console.log(marker)
+
+            // console.log(this.snazzyIW)
+
+            const clickWindow = this.snazzyIW.find((item) => {
+              return item.maxWidth === 700
             })
+            const hoverWindow = this.snazzyIW.find((item) => {
+              return item.maxWidth === 900
+            })
+
+            marker.addListener('mouseover', () => {
+              if (clickWindow.openStatus() === false) {
+                hoverWindow._openInfoWindow()
+              }
+            })
+            marker.addListener('mouseout', () => {
+              if (clickWindow.openStatus() === false) {
+                hoverWindow._closeInfoWindow()
+              }
+            })
+            // marker.addListener('click', () => {
+            //   hoverWindow.close()
+            // })
+
           })
       })
+
+  }
+
+  ngOnInit(): void {
+
+    // this._mapsWrapper.getNativeMap()
+    //   .then((map) => {
+    //     this._manager.getNativeMarker(this._markerComponent)
+    //       .then((marker) => {
+    //         const options = {content: this.el.nativeElement.querySelector('.hover-window-content')}
+    //         this._mapsWrapper.createInfoWindow(options)
+    //         .then( (w) => {
+    //           marker.addListener('mouseover', () => {
+    //             w.open(map, marker)
+    //           })
+    //           marker.addListener('mouseout', () => {
+    //             w.close()
+    //           })
+    //           marker.addListener('click', () => {
+    //             w.close()
+    //           })
+    //         })
+    //       })
+    //   })
 
   }
 

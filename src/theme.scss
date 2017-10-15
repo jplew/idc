@@ -11,6 +11,29 @@ $idc-theme: mat-light-theme($idc-primary, $idc-accent, $idc-warn);
 
 @include angular-material-theme($idc-theme);
 
+$primary: mat-color($idc-primary);
+$accent: mat-color($idc-accent);
+$warn: mat-color($idc-warn);
+
+.primary {
+  color: $primary;
+}
+.accent {
+  color: $accent;
+}
+.warn {
+  color: $warn;
+}
+.bg-primary {
+  background-color: $accent;
+}
+.bg-accent {
+  background-color: $accent;
+}
+.bg-warn {
+  background-color: $warn;
+}
+
 $idc-typography: mat-typography-config(
   $font-family: '"Open Sans", "Helvetica Neue", sans-serif'
 );
@@ -49,20 +72,6 @@ mat-toolbar {
   position: absolute;
   top: 100px;
   right: 100px;
-}
-
-$primary: mat-color($idc-primary);
-$accent: mat-color($idc-accent);
-$warn: mat-color($idc-warn);
-
-.accent {
-  color: mat-color($idc-accent);
-  font-weight: 700;
-}
-
-.warn {
-  color: mat-color($idc-warn);
-  font-weight: 700;
 }
 
 .example-fill-remaining-space {
@@ -191,13 +200,50 @@ $warn: mat-color($idc-warn);
   width: 40px;
 }
 .hover-table-value {
-  font-weight: 900!important;
+  font-weight: 700;
   width: 40px;
   text-align: right;
 }
-.text-green {
-  color: $accent;
+.si-frame.si-content-wrapper {
+  padding: 20px 20px 0;
+  width: 170px;
+  background-color: #fff; 
 }
-.text-red {
-  color: $warn;
+
+
+.custom-heading {
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 55px;
+  z-index: 1; 
+  color: white;
 }
+
+
+.custom-heading > .mat-title {
+  margin-top: 12px;
+}
+
+.custom-content {
+  /* color: #333; */
+  margin: 49px 0 12px 0;
+  text-align: center;
+  background: none;
+  position: relative;
+  max-height: inherit;
+  overflow: auto;
+  z-index: 2; 
+}
+
+.custom-content > .mat-title {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  /* font-size: 20px; */
+}
+/*# sourceMappingURL=styles.css.map */

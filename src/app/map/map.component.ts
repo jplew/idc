@@ -4,19 +4,23 @@ import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper, AgmInfoWindow }
 import { MapAccessorService } from '../services/map-accessor.service'
 import { UiService } from '../services/ui.service'
 import { DataService } from '../services/data.service'
+import { AgmSnazzyInfoWindow } from '@agm/snazzy-info-window'
+import 'rxjs/add/operator/map'
 
 declare var google: any
 
 @Component({
   selector: 'app-map',
+  styleUrls: ['./map.component.css'],
   templateUrl: './map.component.html'
 })
 export class MapComponent implements OnInit, AfterViewInit {
 
   map: any
-  myMap: any
   @ViewChild(AgmMap) mapElement: any
   @ViewChildren(AgmInfoWindow) infoWindow: any
+  @ViewChildren(AgmSnazzyInfoWindow) snazzyIW: any
+
   centerLat: number
   centerLng: number
   latNorth: number
@@ -30,12 +34,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   iconGood = '../../assets/images/location-green.png'
   iconBad  = '../../assets/images/location-red.png'
 
-  tmpValue: any
-
-  // clickedMarker(label: string, latitude: number, longitude: number, index: number) {
-  //   console.log(`clicked the marker: ${latitude}, ${longitude}, ${label}, ${index}`)
-  // }
-
   constructor(
     private dataService: DataService,
     private uiService: UiService,
@@ -47,15 +45,18 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   public loadAPIWrapper(map) {
-    console.log('I was loaded')
     this.map = map
   }
   public markerClicked = (markerObj) => {
 
-    console.log(this.infoWindow)
+    console.log('Hello')
 
     // console.log(markerObj)
-    this.uiService.open()
+    this.uiService.openDrawer()
+    // console.log(this.snazzyIW)
+
+    const id = markerObj.id
+    this.uiService.closeWindows(id, this.snazzyIW)
 
     // hoverWindow.close(map, marker);
 
@@ -65,14 +66,33 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataService.getAll()
+      /*
+      * remap the data to determine whether this is a green or a red plant. Green
+      * corresponds to an FPY value greater than 70, red to an FPY value less than
+      * 70. App will update the UI based on the 'isGoodYield' boolean introduced
+      * here. */
+      .map( res => {
+
+        const obj = res.json()
+        obj.forEach(element => {
+          const fpyRow = element.yieldData.find(({cat}) => {
+            return cat === 'FPY'
+          })
+
+          element.isGoodYield = ( fpyRow.value > 70 ) ? true : false
+        })
+        return obj
+      })
       .subscribe(
         response => {
-          this.markers = response.json()
+          // this 'markers' object will be sent to Google Maps to generate markers
+          this.markers = response
           console.log(this.markers)
         },
         error => {
           console.log(error)
         })
+
     // this._apiWrapper.getNativeMap()
     //   .then((map: GoogleMap) => {
     //     this.myMap = map
@@ -86,12 +106,17 @@ export class MapComponent implements OnInit, AfterViewInit {
     // this.registerEventHandlers()
   }
 
-
+  getValue(data, cat) {
+    const obj = data.find((item) => {
+      return item.cat === cat
+    })
+    return obj.value
+  }
   mapClicked($event: MouseEvent) {
     // console.log('I was clicked')
-    this.infoWindow.forEach(element => {
-      element.close()
-    })
+    // this.infoWindow.forEach(element => {
+    //   element.close()
+    // })
     this.uiService.toggle()
     // console.log(this)
     // this.markers.push({
@@ -105,9 +130,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   // });
 
   mapReady(e) {
-    console.log('The Map is: ', e)
-    this.myMap = e
-    console.log(this.mapElement)
+    // console.log(this.snazzyIW)
+    // console.log('The Map is: ', e)
+    // this.myMap = e
+    // console.log(this.mapElement)
     // const latNorth = e.prototype.getCenter()
     // // const latSouth = this.myMap.getBounds().getSouthWest().lat()
     // console.log(latNorth)

@@ -25,10 +25,10 @@
   <agm-marker 
       *ngFor="let m of markers; let i = index"
 
-      (markerClick)="markerClicked(m); gm.lastOpen?.close(); gm.lastOpen = infoWindow;"
+      (markerClick)="markerClicked(m)"
       [latitude]="m.lat"
       [longitude]="m.lng"
-      [iconUrl]="(m.goodYield === true) ? iconGood : iconBad"
+      [iconUrl]="(m.isGoodYield === true) ? iconGood : iconBad"
       [title]="m.location"
       [zIndex]="1"
       [markerDraggable]=false
@@ -36,12 +36,51 @@
       [appMarkerAccessor]="m.yieldData"
       >
       
-    <agm-info-window #infoWindow>
-      <app-click-window></app-click-window>
-    </agm-info-window>
+    <!-- <agm-snazzy-info-window #hoverWindow id="hover" [maxWidth]="900" [showCloseButton]="false"  [closeWhenOthersOpen]="true"> -->
 
-    <app-hover-window [location]="m.location" [data]="m.yieldData">
-    </app-hover-window>
+    <agm-snazzy-info-window #clickWindow
+      [maxWidth]="700" 
+      [openOnMarkerClick]="true"  
+      [closeWhenOthersOpen]="false"
+      [panOnOpen]="true"
+      >
+      <ng-template>
+        
+        My clicked Snazzy Info Window!
+      </ng-template>
+    </agm-snazzy-info-window>
+    
+    <agm-snazzy-info-window #hoverWindow 
+      [maxWidth]="900" 
+      [showCloseButton]="false"  
+      [openOnMarkerClick]="false"  
+      [closeWhenOthersOpen]="true"
+      [panOnOpen]="false"
+      >
+      
+      <ng-template>
+        <div class="custom-heading {{ ( m.isGoodYield === true ) ? 'bg-accent' : 'bg-warn' }}">
+          <h3 class="mat-title">
+            FPY
+          </h3>
+        </div>
+      
+        <div class="custom-content">
+          <h3 class="mat-title {{ ( m.isGoodYield === true ) ? 'accent' : 'warn' }}">
+
+            {{ getValue(m.yieldData, "FPY") }} %
+          </h3>
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+      
+
+    <!-- <agm-info-window #infoWindow>
+      <app-click-window></app-click-window>
+    </agm-info-window> -->
+
+    <!-- <app-hover-window [location]="m.location" [data]="m.yieldData">
+    </app-hover-window> -->
 
     <app-map-child (onMapLoad)='loadAPIWrapper($event)'></app-map-child>
     
