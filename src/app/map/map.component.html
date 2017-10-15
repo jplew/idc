@@ -36,18 +36,30 @@
       [appMarkerAccessor]="m.yieldData"
       >
       
-    <!-- <agm-snazzy-info-window #hoverWindow id="hover" [maxWidth]="900" [showCloseButton]="false"  [closeWhenOthersOpen]="true"> -->
-
     <agm-snazzy-info-window #clickWindow
       [maxWidth]="700" 
+      [showCloseButton]="false"  
       [openOnMarkerClick]="true"  
       [closeWhenOthersOpen]="false"
       [panOnOpen]="true"
       >
+
       <ng-template>
+        <div class="click-container">
+          <div class="custom-heading {{ ( m.isGoodYield === true ) ? 'bg-accent' : 'bg-warn' }}">
+            <h3 class="mat-title">
+              FPY
+            </h3>
+          </div>
         
-        My clicked Snazzy Info Window!
+          <div class="custom-content">
+            <h3 class="mat-title {{ ( m.isGoodYield === true ) ? 'accent' : 'warn' }}">
+              {{ getValue(m.yieldData, "FPY") }} %
+            </h3>
+          </div>
+        </div>
       </ng-template>
+
     </agm-snazzy-info-window>
     
     <agm-snazzy-info-window #hoverWindow 
@@ -57,31 +69,13 @@
       [closeWhenOthersOpen]="true"
       [panOnOpen]="false"
       >
-      
-      <ng-template>
-        <div class="custom-heading {{ ( m.isGoodYield === true ) ? 'bg-accent' : 'bg-warn' }}">
-          <h3 class="mat-title">
-            FPY
-          </h3>
-        </div>
-      
-        <div class="custom-content">
-          <h3 class="mat-title {{ ( m.isGoodYield === true ) ? 'accent' : 'warn' }}">
 
-            {{ getValue(m.yieldData, "FPY") }} %
-          </h3>
-        </div>
+      <ng-template>
+        <app-hover-window [data]="m"></app-hover-window>
       </ng-template>
+      
     </agm-snazzy-info-window>
       
-
-    <!-- <agm-info-window #infoWindow>
-      <app-click-window></app-click-window>
-    </agm-info-window> -->
-
-    <!-- <app-hover-window [location]="m.location" [data]="m.yieldData">
-    </app-hover-window> -->
-
     <app-map-child (onMapLoad)='loadAPIWrapper($event)'></app-map-child>
     
   </agm-marker>

@@ -5,7 +5,6 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  OnInit,
   ViewChildren,
   ContentChildren,
   AfterContentInit
@@ -17,7 +16,7 @@ import { AgmSnazzyInfoWindow } from '@agm/snazzy-info-window'
 @Directive({
   selector: '[appMarkerAccessor]'
 })
-export class MarkerAccessorDirective implements OnInit, OnDestroy, AfterContentInit {
+export class MarkerAccessorDirective implements OnDestroy, AfterContentInit {
 
   @Input() appMarkerAccessor: any
   @ContentChildren(AgmSnazzyInfoWindow) snazzyIW: any
@@ -39,11 +38,6 @@ export class MarkerAccessorDirective implements OnInit, OnDestroy, AfterContentI
       .then((map) => {
         this._manager.getNativeMarker(this._markerComponent)
           .then((marker) => {
-            const options = {content: this.el.nativeElement.querySelector('.hover-window-content')}
-
-            // console.log(marker)
-
-            // console.log(this.snazzyIW)
 
             const clickWindow = this.snazzyIW.find((item) => {
               return item.maxWidth === 700
@@ -62,36 +56,9 @@ export class MarkerAccessorDirective implements OnInit, OnDestroy, AfterContentI
                 hoverWindow._closeInfoWindow()
               }
             })
-            // marker.addListener('click', () => {
-            //   hoverWindow.close()
-            // })
 
           })
       })
-
-  }
-
-  ngOnInit(): void {
-
-    // this._mapsWrapper.getNativeMap()
-    //   .then((map) => {
-    //     this._manager.getNativeMarker(this._markerComponent)
-    //       .then((marker) => {
-    //         const options = {content: this.el.nativeElement.querySelector('.hover-window-content')}
-    //         this._mapsWrapper.createInfoWindow(options)
-    //         .then( (w) => {
-    //           marker.addListener('mouseover', () => {
-    //             w.open(map, marker)
-    //           })
-    //           marker.addListener('mouseout', () => {
-    //             w.close()
-    //           })
-    //           marker.addListener('click', () => {
-    //             w.close()
-    //           })
-    //         })
-    //       })
-    //   })
 
   }
 

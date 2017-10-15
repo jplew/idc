@@ -49,8 +49,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
   public markerClicked = (markerObj) => {
 
-    console.log('Hello')
-
     // console.log(markerObj)
     this.uiService.openDrawer()
     // console.log(this.snazzyIW)
@@ -65,20 +63,18 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    /*
+    * remap the data to determine whether this is a green or a red plant. Green
+    * corresponds to an FPY value greater than 70, red to an FPY value less than
+    * 70. App will update the UI based on the 'isGoodYield' boolean introduced
+    * here. */
     this.dataService.getAll()
-      /*
-      * remap the data to determine whether this is a green or a red plant. Green
-      * corresponds to an FPY value greater than 70, red to an FPY value less than
-      * 70. App will update the UI based on the 'isGoodYield' boolean introduced
-      * here. */
       .map( res => {
-
         const obj = res.json()
         obj.forEach(element => {
           const fpyRow = element.yieldData.find(({cat}) => {
             return cat === 'FPY'
           })
-
           element.isGoodYield = ( fpyRow.value > 70 ) ? true : false
         })
         return obj
@@ -87,7 +83,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         response => {
           // this 'markers' object will be sent to Google Maps to generate markers
           this.markers = response
-          console.log(this.markers)
+          // console.log(this.markers)
         },
         error => {
           console.log(error)

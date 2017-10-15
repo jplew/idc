@@ -10,8 +10,6 @@ export class HoverWindowComponent implements OnInit {
   @Input() location: string
   @Input() data: any
 
-  textGreen = 'text-green'
-  textRed   = 'text-red'
   circleGreen = '../../assets/images/circle-green.png'
   circleRed   = '../../assets/images/circle-red.png'
 

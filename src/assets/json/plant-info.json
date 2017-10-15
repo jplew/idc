@@ -198,7 +198,7 @@
       "id": 15,
       "lat": 19.39068,
       "lng": -99.2836968,
-      "location": "Lahore",
+      "location": "Mexico City",
       "yieldData": [
         { "cat": "PPM", "value": 32.0 },
         { "cat": "COQ", "value": 50.1 },
@@ -250,7 +250,7 @@
       "id": 19,
       "lat": 55.6712474,
       "lng": 12.5237848,
-      "location": "Copenhangen",
+      "location": "Copenhagen",
       "yieldData": [
         { "cat": "PPM", "value": 32.0 },
         { "cat": "COQ", "value": 50.1 },
@@ -270,6 +270,162 @@
         { "cat": "Scrap", "value": 80.4 },
         { "cat": "Sigma", "value": 78 },
         { "cat": "FPY", "value": 85.5 }
+      ],
+      "equipment": [
+        { 
+          "name": "Reactor",
+          "value": 100,
+          "product": [
+            {
+              "name": "W7573B",
+              "value": 0,
+              "batch": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W7575",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W757300M219",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            }
+          ]
+        },
+        { 
+          "name": "Blender 1",
+          "value": 50,
+          "product": [
+            {
+              "name": "W7573B",
+              "value": 0,
+              "batch": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W7575",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W757300M219",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            }
+          ]
+        },        { 
+          "name": "Blender 2",
+          "value": 100,
+          "product": [
+            {
+              "name": "W7573B",
+              "value": 0,
+              "batch": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W7575",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W757300M219",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            }
+          ]
+        },        { 
+          "name": "Extruder",
+          "value": 100,
+          "product": [
+            {
+              "name": "W7573B",
+              "value": 0,
+              "batch": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W7575",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            },
+            {
+              "name": "W757300M219",
+              "value": 100,
+              "product": [
+                { "name": "Batch 123", "value": 100 },
+                { "name": "Batch 124", "value": 50 },
+                { "name": "Batch 125", "value": 100 },
+                { "name": "Batch 126", "value": 100 },
+                { "name": "Batch 127", "value": 100 }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -282,8 +438,7 @@
         { "cat": "COQ", "value": 50.1 },
         { "cat": "Scrap", "value": 80.4 },
         { "cat": "Sigma", "value": 78 },
-        { "cat": "FPY", "value": 69.9 }
-      ]
+        { "cat": "FPY", "value": 69.9 } ]
     }
     
 ]

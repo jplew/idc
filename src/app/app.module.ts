@@ -18,7 +18,8 @@ import { MapChildComponent } from './map-child/map-child.component'
 import { UiService } from './services/ui.service'
 import { DataService } from './services/data.service';
 import { HoverTableComponent } from './hover-table/hover-table.component';
-import { ClickWindowComponent } from './click-window/click-window.component'
+import { ClickWindowComponent } from './click-window/click-window.component';
+import { SidenavContentComponent } from './sidenav-content/sidenav-content.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ClickWindowComponent } from './click-window/click-window.component'
     HoverWindowComponent,
     MapChildComponent,
     HoverTableComponent,
-    ClickWindowComponent
+    ClickWindowComponent,
+    SidenavContentComponent
   ],
   imports: [
     BrowserModule,

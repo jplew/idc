@@ -1,13 +1,13 @@
 <app-navbar></app-navbar>
 
+<div class="section-icon" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+  <img src="../assets/images/icon-plant.png" alt="Plant Icon"> <span class="mat-subheading-2">Plant Map</span>
+</div>
+
 <mat-sidenav-container class="example-sidenav-fab-container">
 
   <mat-sidenav #sidenav position="end" mode="side" opened="false">
-    <div class="sidebar">
-      Lorem ipsum dolor sit amet, pede a libero aenean phasellus, lectus metus sint ut risus, fusce vel in pellentesque. Nisl rutrum
-      etiam morbi consectetuer tempor magna, aenean nullam nunc id, neque vivamus interdum sociis nulla scelerisque sem,
-      dolor id wisi turpis magna
-    </div>
+    <app-sidenav-content [data]="data"></app-sidenav-content>
   </mat-sidenav>
 
   <app-map></app-map>

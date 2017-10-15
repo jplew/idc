@@ -26,8 +26,6 @@ export class UiService {
       return ( windowId ) === id
     })
 
-    console.log(thisWindow)
-
     windows.forEach(window => {
       // console.log(window._marker._id)
       window._closeInfoWindow()
