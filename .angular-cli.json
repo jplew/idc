@@ -21,7 +21,8 @@
       "styles": [
         "styles.css",
         "theme.scss",
-        "../node_modules/snazzy-info-window/dist/snazzy-info-window.css"
+        "../node_modules/snazzy-info-window/dist/snazzy-info-window.css",
+        "../node_modules/angular-tree-component/dist/angular-tree-component.css"
       ],
       "stylePreprocessorOptions": {
         "includePaths": ["./"]

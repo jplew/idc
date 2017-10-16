@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     private uiService: UiService
   ) {
     this.plantData = this.dataService.plantData
+    this.currentPlant = {}
 
     dataService.plantChanged$.subscribe(
       id => {

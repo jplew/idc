@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
 
-<div class="section-icon" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+<div class="icon-floating icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
   <img src="../assets/images/icon-plant.png" alt="Plant Icon"> <span class="mat-subheading-2">Plant Map</span>
 </div>
 
-<mat-sidenav-container class="example-sidenav-fab-container">
+<mat-sidenav-container class="sidenav-container">
 
   <mat-sidenav #sidenav position="end" mode="side" opened="false">
     <app-sidenav-content [data]="currentPlant"></app-sidenav-content>
@@ -29,9 +29,9 @@
 
       </mat-button-toggle-group>
 
-      <button mat-mini-fab class="example-fab" (click)="sidenav.toggle()">
+      <!-- <button mat-mini-fab class="example-fab" (click)="sidenav.toggle()">
         <mat-icon>location_on</mat-icon>
-      </button>
+      </button> -->
 
     </div>
   </div>

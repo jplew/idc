@@ -1,8 +1,49 @@
-<div class="sidebar">
-  Hello Sidenav
-
-  <div *ngIf="data">
-    {{ data.id }}
+<div class="sidebar" *ngIf="data.location else loading">
+  
+  <div class="mat-headline">
     {{ data.location }}
   </div>
+
+  <hr>
+
+  <div class="icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <img src="../assets/images/icon-equipment.png" alt="Equipment icon"> <span class="mat-subheading-2">Equipment</span>
+  </div>
+
+
+<tree-root [nodes]="data.equipment">
+  <ng-template #treeNodeTemplate let-node let-index="index">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0">
+      <span class="sidenav-row-name" fxFlex="4 1 auto">{{ node.data.name }}</span>
+      <span class="fill-remaining-space"></span>
+      <span class="sidenav-row-value {{ node.data.value > 70 ? 'accent' : 'warn' }}" fxFlex="1 1 auto">{{ node.data.value }}%</span>
+    </div>
+  </ng-template>
+</tree-root>
+  
+<hr>
+
+  <!-- <div *ngFor="let eq of data.equipment">
+    {{ eq.name }}
+    {{ eq.value }}
+    <div *ngFor="let prod of eq.children">
+      {{ prod.name }}
+      {{ prod.value }}
+      <div *ngFor="let batch of prod.children">
+        {{ batch.name }}
+        {{ batch.value }}
+      </div>
+    </div>
+  </div> -->
+
+  <div class="vert-spacer-30"></div>
+
+  <div class="icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <img src="../assets/images/icon-equipment.png" alt="Equipment icon"> <span class="mat-subheading-2">Quality Performance</span>
+  </div>
+
 </div>
+
+<ng-template #loading>
+    <div class="sidebar mat-body-2">Select a plant by clicking a map marker, or by using search.</div>
+</ng-template>
