@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { MatSidenav, MatDrawerToggleResult } from '@angular/material'
-import { COLORS } from './colors'
+// import { COLORS } from './colors'
 
 @Injectable()
 export class UiService {
@@ -9,9 +9,9 @@ export class UiService {
 
   constructor() { }
 
-  getColors() {
-    return COLORS
-  }
+  // getColors() {
+  //   return COLORS
+  // }
 
   public setSidenav(sidenav: MatSidenav) {
     this.sidenav = sidenav
@@ -40,8 +40,8 @@ export class UiService {
     return this.sidenav.open()
   }
 
-  public close(): Promise<MatDrawerToggleResult> {
-    return this.sidenav.open()
+  public closeDrawer(): Promise<MatDrawerToggleResult> {
+    return this.sidenav.close()
   }
 
   public toggle(isOpen?: boolean): Promise<MatDrawerToggleResult> {

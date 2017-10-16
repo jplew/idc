@@ -1,5 +1,14 @@
 <div class="click-window-content">
-  <strong>
-    My Custom Content</strong>
-
+    <div class="custom-heading {{ ( data.isGoodYield === true ) ? 'bg-accent' : 'bg-warn' }}">
+      <h3 class="mat-title">
+        FPY
+      </h3>
+    </div>
+    {{ data.location }}
+  
+    <div class="custom-content">
+      <h3 class="mat-title {{ ( data.isGoodYield === true ) ? 'accent' : 'warn' }}">
+        {{ getValue(data.yieldData, "FPY") }} %
+      </h3>
+    </div>
 </div>

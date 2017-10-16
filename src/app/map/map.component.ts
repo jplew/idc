@@ -49,15 +49,19 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
   public markerClicked = (markerObj) => {
 
+    this.uiService.closeDrawer()
+
+    const id = markerObj.id
+    this.uiService.closeWindows(id, this.snazzyIW)
+    this.dataService.currentPlantId = id
+    this.dataService.changePlant(id)
     // console.log(markerObj)
     this.uiService.openDrawer()
     // console.log(this.snazzyIW)
 
-    const id = markerObj.id
-    this.uiService.closeWindows(id, this.snazzyIW)
-
     // hoverWindow.close(map, marker);
 
+    // pretty cool, uncomment this to pan to location on each marker click
     // const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
     // this.map.panTo(position)
   }
@@ -102,39 +106,12 @@ export class MapComponent implements OnInit, AfterViewInit {
     // this.registerEventHandlers()
   }
 
-  getValue(data, cat) {
-    const obj = data.find((item) => {
-      return item.cat === cat
-    })
-    return obj.value
-  }
   mapClicked($event: MouseEvent) {
     // console.log('I was clicked')
     // this.infoWindow.forEach(element => {
     //   element.close()
     // })
     this.uiService.toggle()
-    // console.log(this)
-    // this.markers.push({
-    //   lat: $event.coords.lat,
-    //   lng: $event.coords.lng
-    // })
-  }
-
-  // google.maps.event.addListener(map, 'center_changed', function () {
-  //   checkBounds(map);
-  // });
-
-  mapReady(e) {
-    // console.log(this.snazzyIW)
-    // console.log('The Map is: ', e)
-    // this.myMap = e
-    // console.log(this.mapElement)
-    // const latNorth = e.prototype.getCenter()
-    // // const latSouth = this.myMap.getBounds().getSouthWest().lat()
-    // console.log(latNorth)
-
-    // console.log(this._mapAccessor.agmMarkers)
   }
 
   checkBounds() {

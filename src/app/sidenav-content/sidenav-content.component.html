@@ -1,3 +1,8 @@
 <div class="sidebar">
-  {{ data }}
+  Hello Sidenav
+
+  <div *ngIf="data">
+    {{ data.id }}
+    {{ data.location }}
+  </div>
 </div>
