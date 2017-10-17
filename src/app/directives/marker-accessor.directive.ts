@@ -12,7 +12,7 @@ import {
 import { MarkerManager, AgmMarker, GoogleMapsAPIWrapper } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
 import { AgmSnazzyInfoWindow } from '@agm/snazzy-info-window'
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/data.service'
 
 @Directive({
   selector: '[appMarkerAccessor]'

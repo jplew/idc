@@ -4,6 +4,7 @@
     "lat": -33.8934219,
     "lng": 151.20404600000006,
     "location": "Sydney",
+    "region": "Oceania",
     "yieldData": [
       {
         "cat": "PPM",
@@ -370,6 +371,7 @@
     "lat": 1.28304,
     "lng": 103.85199319999992,
     "location": "Singapore",
+    "region": "Asia",
     "yieldData": [
       {
         "cat": "PPM",
@@ -736,6 +738,7 @@
     "lat": 41.8336479,
     "lng": -87.8720464,
     "location": "Chicago",
+    "region": "North America",
     "yieldData": [
       {
         "cat": "PPM",
@@ -1102,6 +1105,7 @@
     "lat": -1.2890117,
     "lng": 36.793729600000006,
     "location": "Nairobi",
+    "region": "Africa",
     "yieldData": [
       {
         "cat": "PPM",
@@ -1468,6 +1472,7 @@
     "lat": 51.5014767,
     "lng": -0.0713608999999451,
     "location": "London",
+    "region": "Europe",
     "yieldData": [
       {
         "cat": "PPM",
@@ -1834,6 +1839,7 @@
     "lat": 51.9107013,
     "lng": 4.547834200000011,
     "location": "Rotterdam",
+    "region": "Europe",
     "yieldData": [
       {
         "cat": "PPM",
@@ -2200,6 +2206,7 @@
     "lat": 12.9657659,
     "lng": 77.5998538,
     "location": "Bangalore",
+    "region": "Asia",
     "yieldData": [
       {
         "cat": "PPM",
@@ -2566,6 +2573,7 @@
     "lat": 31.2240453,
     "lng": 121.1965697,
     "location": "Shanghai",
+    "region": "Asia",
     "yieldData": [
       {
         "cat": "PPM",
@@ -2932,6 +2940,7 @@
     "lat": 48.1548895,
     "lng": 11.4717964,
     "location": "Munich",
+    "region": "Europe", 
     "yieldData": [
       {
         "cat": "PPM",
@@ -3298,6 +3307,7 @@
     "lat": 39.7642548,
     "lng": -104.9951939,
     "location": "Denver",
+    "region": "North America",  
     "yieldData": [
       {
         "cat": "PPM",
@@ -3664,6 +3674,7 @@
     "lat": 34.0201613,
     "lng": -118.6919144,
     "location": "Los Angeles",
+    "region": "North America",  
     "yieldData": [
       {
         "cat": "PPM",
@@ -4030,6 +4041,7 @@
     "lat": 43.6567919,
     "lng": -79.460932,
     "location": "Toronto",
+    "region": "North America",
     "yieldData": [
       {
         "cat": "PPM",
@@ -4396,6 +4408,7 @@
     "lat": 6.5480553,
     "lng": 3.2574159,
     "location": "Lagos",
+    "region": "Africa", 
     "yieldData": [
       {
         "cat": "PPM",
@@ -4762,6 +4775,7 @@
     "lat": -23.6821604,
     "lng": -46.8754835,
     "location": "Sao Paulo",
+    "region": "South America", 
     "yieldData": [
       {
         "cat": "PPM",
@@ -5128,6 +5142,7 @@
     "lat": 31.483673,
     "lng": 74.1861228,
     "location": "Lahore",
+    "region": "Asia",
     "yieldData": [
       {
         "cat": "PPM",
@@ -5494,6 +5509,7 @@
     "lat": 19.39068,
     "lng": -99.2836968,
     "location": "Mexico City",
+    "region": "North America",
     "yieldData": [
       {
         "cat": "PPM",
@@ -5860,6 +5876,7 @@
     "lat": 41.3947688,
     "lng": 2.0787284,
     "location": "Barcelona",
+    "region": "Europe", 
     "yieldData": [
       {
         "cat": "PPM",
@@ -6226,6 +6243,7 @@
     "lat": 59.9171483,
     "lng": 30.0448898,
     "location": "St. Petersburg",
+    "region": "Europe",
     "yieldData": [
       {
         "cat": "PPM",
@@ -6592,6 +6610,7 @@
     "lat": 48.2206636,
     "lng": 16.3100206,
     "location": "Vienna",
+    "region": "Europe",
     "yieldData": [
       {
         "cat": "PPM",
@@ -6958,6 +6977,7 @@
     "lat": 55.6712474,
     "lng": 12.5237848,
     "location": "Copenhagen",
+    "region": "Europe",
     "yieldData": [
       {
         "cat": "PPM",
@@ -7324,6 +7344,7 @@
     "lat": 33.7676931,
     "lng": -84.4906436,
     "location": "Atlanta",
+    "region": "North America",
     "yieldData": [
       {
         "cat": "PPM",
@@ -7690,6 +7711,7 @@
     "lat": 29.8168824,
     "lng": -95.6814738,
     "location": "Houston",
+    "region": "North America",
     "yieldData": [
       {
         "cat": "PPM",

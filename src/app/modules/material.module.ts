@@ -7,8 +7,13 @@ import {
   MatInputModule,
   MatButtonToggleModule,
   MatTableModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatPaginatorModule,
 } from '@angular/material'
+import {
+  CdkTableModule
+} from '@angular/cdk/table'
+
 
 @NgModule({
   exports: [
@@ -19,7 +24,9 @@ import {
     MatInputModule,
     MatButtonToggleModule,
     MatTableModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatPaginatorModule,
+    CdkTableModule,
   ]
 })
 export class MaterialModule { }
