@@ -44,7 +44,7 @@ import { PlantSelectionComponent } from '../plant-selection/plant-selection.comp
     PageNotFoundComponent,
     MapViewComponent,
     ListViewComponent,
-    PlantSelectionComponent,
+    PlantSelectionComponent
   ],
   imports: [
     BrowserModule,

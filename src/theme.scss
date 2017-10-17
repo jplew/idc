@@ -204,18 +204,6 @@ hr {
   margin-bottom: 10px;
   font-weight: 600;
 }
-
-.example-container {
-  display: flex;
-  flex-direction: column;
-  max-height: 500px;
-  // min-width: 300px;
-}
-
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
-}
 .hover-table-icon {
   width: 25px;
 }
@@ -412,3 +400,33 @@ hr {
 // .isVisible {
 //   display: block
 // }
+.small-squeeze {
+  padding: 0 3px;
+}
+
+/* Structure */
+.example-container {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 32px;
+}
+
+.mat-table {
+  overflow: auto;
+}

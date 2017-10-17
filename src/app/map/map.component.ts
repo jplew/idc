@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, OnDestroy, AfterContentInit } from '@angular/core'
+import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, OnDestroy, AfterContentInit, Input } from '@angular/core'
 import { GoogleMap } from '@agm/core/services/google-maps-types'
 import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper, AgmInfoWindow } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
@@ -22,6 +22,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
   @ViewChildren(AgmInfoWindow) infoWindow: any
   @ViewChildren(AgmSnazzyInfoWindow) snazzyIW: any
   @ViewChildren(AgmMarker) agmMarkers: any
+  @Input() isHiddenBool: boolean
 
   centerLat: number
   centerLng: number

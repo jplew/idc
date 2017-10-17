@@ -14,6 +14,8 @@ export class PlantSelectionComponent implements OnInit {
   currentPlantId: number
   currentPlant: any
   plantData: any
+  isMapHidden: boolean
+  isListHidden: boolean
 
   @ViewChild(MatSidenav) public sidenav: MatSidenav
 
@@ -24,6 +26,8 @@ export class PlantSelectionComponent implements OnInit {
     this.plantData = this.dataService.plantData
     this.currentPlant = {}
     this.isMap = true
+    this.isMapHidden = false
+    this.isListHidden = true
 
     dataService.plantChanged$.subscribe(
       id => {
@@ -39,13 +43,13 @@ export class PlantSelectionComponent implements OnInit {
     // this.dataService.getPlants()
   }
   showView(view) {
-    console.log(view)
     if (view === 'map') {
-      this.isMap = true
+      this.isMapHidden = false
+      this.isListHidden = true
     } else {
-      this.isMap = false
+      this.isMapHidden = true
+      this.isListHidden = false
     }
-    console.log(this.isMap)
   }
 
 }
