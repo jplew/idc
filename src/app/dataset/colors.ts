@@ -146,4 +146,4 @@ export const COLORS = [
   'WhiteSmoke',
   'Yellow',
   'YellowGreen'
-];
+]

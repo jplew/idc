@@ -1,16 +1,16 @@
 import {Component, ViewChild, AfterViewInit, OnInit, Input} from '@angular/core'
-import {PeopleDatabase, UserData} from '../services/people-database'
+import {PeopleDatabase, PlantData} from '../services/people-database'
 import {PersonDataSource} from '../services/person-data-source'
 import {MatPaginator, MatSort, MatTableDataSource } from '@angular/material'
 import {DetailRow, PersonDetailDataSource} from '../services/person-detail-data-source'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import {FormControl} from '@angular/forms'
 
-export type UserProperties = 'userId' | 'userName' | 'progress' | 'color' | undefined
+export type UserProperties = 'location' | 'region' | 'yieldData' | undefined
 
 export type TrackByStrategy = 'id' | 'reference' | 'index'
 
-const properties = ['id', 'name', 'progress', 'color']
+const properties = ['location', 'region', 'yieldData']
 
 @Component({
   moduleId: module.id,
@@ -28,19 +28,19 @@ const properties = ['id', 'name', 'progress', 'color']
 export class TableDemoComponent implements OnInit, AfterViewInit {
   dataSource: PersonDataSource | null
   dataSourceWithDetails: PersonDetailDataSource | null
-  matTableDataSource = new MatTableDataSource<UserData>()
+  matTableDataSource = new MatTableDataSource<PlantData>()
   displayedColumns: UserProperties[] = []
   trackByStrategy: TrackByStrategy = 'reference'
   changeReferences = false
   highlights = new Set<string>()
-  wasExpanded = new Set<UserData>()
+  wasExpanded = new Set<PlantData>()
 
   filter = new FormControl()
 
   dynamicColumnDefs: any[] = []
   dynamicColumnIds: string[] = []
 
-  expandedPerson: UserData
+  expandedPerson: PlantData
 
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
@@ -49,19 +49,18 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   @Input() isHiddenBool: boolean
 
-  isDetailRow = (row: DetailRow|UserData) => row.hasOwnProperty('detailRow')
+  isDetailRow = (row: DetailRow|PlantData) => row.hasOwnProperty('detailRow')
 
   constructor(public _peopleDatabase: PeopleDatabase) {
-    this.matTableDataSource.sortingDataAccessor = (data: UserData, property: string) => {
+    this.matTableDataSource.sortingDataAccessor = (data: PlantData, property: string) => {
       switch (property) {
-        case 'userId': return +data.id
-        case 'userName': return data.name
-        case 'progress': return +data.progress
-        case 'color': return data.color
+        case 'location': return data.location
+        case 'region': return data.region
+        case 'yieldData': return data.yieldData
         default: return ''
       }
     }
-    this.matTableDataSource.filterTermAccessor = (data: UserData) => data.name
+    this.matTableDataSource.filterTermAccessor = (data: PlantData) => data.location
     this.filter.valueChanges.subscribe(filter => this.matTableDataSource!.filter = filter)
   }
 
@@ -93,7 +92,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
   }
 
   connect() {
-    this.displayedColumns = ['userId', 'userName', 'progress', 'color']
+    this.displayedColumns = ['location', 'region', 'yieldData']
     this.dataSource = new PersonDataSource(this._peopleDatabase,
         this.paginator, this.sort)
     this.dataSourceWithDetails = new PersonDetailDataSource(this.dataSource)
@@ -111,22 +110,21 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
     return distanceFromMiddle / 50 + .3
   }
 
-  userTrackBy = (index: number, item: UserData) => {
+  userTrackBy = (index: number, item: PlantData) => {
     switch (this.trackByStrategy) {
-      case 'id': return item.id
       case 'reference': return item
       case 'index': return index
     }
   }
 
-  toggleColorColumn() {
-    const colorColumnIndex = this.displayedColumns.indexOf('color')
-    if (colorColumnIndex === -1) {
-      this.displayedColumns.push('color')
-    } else {
-      this.displayedColumns.splice(colorColumnIndex, 1)
-    }
-  }
+  // toggleColorColumn() {
+  //   const colorColumnIndex = this.displayedColumns.indexOf('color')
+  //   if (colorColumnIndex === -1) {
+  //     this.displayedColumns.push('color')
+  //   } else {
+  //     this.displayedColumns.splice(colorColumnIndex, 1)
+  //   }
+  // }
 
   toggleHighlight(property: string, enable: boolean) {
     enable ? this.highlights.add(property) : this.highlights.delete(property)

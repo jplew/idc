@@ -1,7 +1,7 @@
 import {MatPaginator, MatSort} from '@angular/material'
 import {DataSource} from '@angular/cdk/collections'
 import {Observable} from 'rxjs/Observable'
-import {PeopleDatabase, UserData} from './people-database'
+import {PeopleDatabase, PlantData} from './people-database'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/operator/map'
 
@@ -12,7 +12,7 @@ export class PersonDataSource extends DataSource<any> {
     super()
   }
 
-  connect(): Observable<UserData[]> {
+  connect(): Observable<PlantData[]> {
     const displayDataChanges = [
       this._paginator.page,
       this._sort.sortChange,
@@ -32,7 +32,7 @@ export class PersonDataSource extends DataSource<any> {
   }
 
   /** Returns a sorted copy of the database data. */
-  getSortedData(): UserData[] {
+  getSortedData(): PlantData[] {
     const data = this._peopleDatabase.data.slice()
     if (!this._sort.active || this._sort.direction === '') { return data }
 
@@ -41,10 +41,9 @@ export class PersonDataSource extends DataSource<any> {
       let propertyB: number|string = ''
 
       switch (this._sort.active) {
-        case 'userId': [propertyA, propertyB] = [a.id, b.id]; break
-        case 'userName': [propertyA, propertyB] = [a.name, b.name]; break
-        case 'progress': [propertyA, propertyB] = [a.progress, b.progress]; break
-        case 'color': [propertyA, propertyB] = [a.color, b.color]; break
+        case 'location': [propertyA, propertyB] = [a.location, b.location]; break
+        case 'region': [propertyA, propertyB] = [a.region, b.region]; break
+        case 'yieldData': [propertyA, propertyB] = [a.yieldData, b.yieldData]; break
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA

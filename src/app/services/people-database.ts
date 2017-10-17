@@ -1,22 +1,22 @@
 import {Injectable} from '@angular/core'
 import {NAMES} from '../dataset/names'
 import {COLORS} from '../dataset/colors'
+import {PLANTS} from '../dataset/plants'
 import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 
 export let LATEST_ID = 0
 
-export interface UserData {
-  id: string
-  name: string
-  progress: string
-  color: string
+export interface PlantData {
+  location: string
+  region: string
+  yieldData: any
 }
 
 @Injectable()
 export class PeopleDatabase {
-  dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([])
+  dataChange: BehaviorSubject<PlantData[]> = new BehaviorSubject<PlantData[]>([])
 
-  get data(): UserData[] { return this.dataChange.value }
+  get data(): PlantData[] { return this.dataChange.value }
 
   constructor() {
     this.initialize()
@@ -25,7 +25,8 @@ export class PeopleDatabase {
   initialize() {
     LATEST_ID = 0
     this.dataChange.next([])
-    for (let i = 0; i < 100; i++) { this.addPerson() }
+    console.log(PLANTS)
+    for (let i = 0; i < PLANTS.length ; i++) { this.addPlant(i) }
   }
 
   shuffle(changeReferences: boolean) {
@@ -36,12 +37,11 @@ export class PeopleDatabase {
     }
 
     if (changeReferences) {
-      copiedData = copiedData.map(userData => {
+      copiedData = copiedData.map(plantData => {
         return {
-          id: userData.id,
-          name: userData.name,
-          progress: userData.progress,
-          color: userData.color
+          location: plantData.location,
+          region: plantData.region,
+          yieldData: plantData.yieldData
         }
       })
     }
@@ -49,17 +49,14 @@ export class PeopleDatabase {
     this.dataChange.next(copiedData)
   }
 
-  addPerson() {
-    const name =
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.'
+  addPlant(i) {
+    const thisPlant = PLANTS[i]
 
     const copiedData = this.data.slice()
     copiedData.push({
-      id: (++LATEST_ID).toString(),
-      name: name,
-      progress: Math.round(Math.random() * 100).toString(),
-      color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
+      location: thisPlant.location,
+      region: thisPlant.region,
+      yieldData: thisPlant.yieldData
     })
 
     this.dataChange.next(copiedData)
