@@ -4,11 +4,7 @@
   <input matInput [formControl]="filter">
 </mat-form-field>
 
-<div class="demo-table-container demo-mat-table-example mat-elevation-z4">
-
-  <app-table-header-demo (shiftColumns)="displayedColumns.push(displayedColumns.shift())"
-                     (toggleColorColumn)="toggleColorColumn()">
-  </app-table-header-demo>
+<div class="table-container mat-table-example">
 
   <mat-table 
     [dataSource]="matTableDataSource" 
@@ -38,7 +34,7 @@
                        mat-sort-header>
         Yield
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.yieldData[4].value}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.yieldData}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -47,6 +43,6 @@
   </mat-table>
 
   <mat-paginator #paginatorForDataSource
-                 [length]="_peopleDatabase.data.length"
-                 [pageSizeOptions]="[10, 25, 100]">
+                 [length]="_plantDatabase.data.length"
+                 [pageSizeOptions]="[10, 25, 50, 100]">
   </mat-paginator>

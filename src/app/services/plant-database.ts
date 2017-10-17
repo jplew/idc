@@ -13,7 +13,7 @@ export interface PlantData {
 }
 
 @Injectable()
-export class PeopleDatabase {
+export class PlantDatabase {
   dataChange: BehaviorSubject<PlantData[]> = new BehaviorSubject<PlantData[]>([])
 
   get data(): PlantData[] { return this.dataChange.value }
@@ -25,13 +25,13 @@ export class PeopleDatabase {
   initialize() {
     LATEST_ID = 0
     this.dataChange.next([])
-    console.log(PLANTS)
+    // console.log(PLANTS)
     for (let i = 0; i < PLANTS.length ; i++) { this.addPlant(i) }
   }
 
   shuffle(changeReferences: boolean) {
     let copiedData = this.data.slice()
-    for (let i = copiedData.length; i; i--) {
+    for (let i = 50; i; i--) {
       const j = Math.floor(Math.random() * i);
       [copiedData[i - 1], copiedData[j]] = [copiedData[j], copiedData[i - 1]]
     }
@@ -56,7 +56,7 @@ export class PeopleDatabase {
     copiedData.push({
       location: thisPlant.location,
       region: thisPlant.region,
-      yieldData: thisPlant.yieldData
+      yieldData: thisPlant.yieldData[4].value
     })
 
     this.dataChange.next(copiedData)

@@ -15,7 +15,7 @@ import { TreeModule } from 'angular-tree-component'
 import { MapAccessorService } from '../services/map-accessor.service'
 import { UiService } from '../services/ui.service'
 import { DataService } from '../services/data.service'
-import { PeopleDatabase } from '../services/people-database'
+import { PlantDatabase } from '../services/plant-database'
 
 import { MarkerAccessorDirective } from '../directives/marker-accessor.directive'
 
@@ -32,7 +32,6 @@ import { MapViewComponent } from '../map-view/map-view.component'
 import { ListViewComponent } from '../list-view/list-view.component'
 import { PlantSelectionComponent } from '../plant-selection/plant-selection.component'
 import { TableDemoComponent } from '../table-demo/table-demo.component'
-import { TableHeaderDemoComponent } from '../table-demo/table-header-demo.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +49,6 @@ import { TableHeaderDemoComponent } from '../table-demo/table-header-demo.compon
     ListViewComponent,
     PlantSelectionComponent,
     TableDemoComponent,
-    TableHeaderDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +71,7 @@ import { TableHeaderDemoComponent } from '../table-demo/table-header-demo.compon
     MarkerManager,
     UiService,
     DataService,
-    PeopleDatabase
+    PlantDatabase
   ],
   bootstrap: [AppComponent]
 })

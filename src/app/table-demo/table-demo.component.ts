@@ -1,5 +1,5 @@
 import {Component, ViewChild, AfterViewInit, OnInit, Input} from '@angular/core'
-import {PeopleDatabase, PlantData} from '../services/people-database'
+import {PlantDatabase, PlantData} from '../services/plant-database'
 import {PersonDataSource} from '../services/person-data-source'
 import {MatPaginator, MatSort, MatTableDataSource } from '@angular/material'
 import {DetailRow, PersonDetailDataSource} from '../services/person-detail-data-source'
@@ -51,7 +51,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   isDetailRow = (row: DetailRow|PlantData) => row.hasOwnProperty('detailRow')
 
-  constructor(public _peopleDatabase: PeopleDatabase) {
+  constructor(public _plantDatabase: PlantDatabase) {
     this.matTableDataSource.sortingDataAccessor = (data: PlantData, property: string) => {
       switch (property) {
         case 'location': return data.location
@@ -93,11 +93,11 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   connect() {
     this.displayedColumns = ['location', 'region', 'yieldData']
-    this.dataSource = new PersonDataSource(this._peopleDatabase,
+    this.dataSource = new PersonDataSource(this._plantDatabase,
         this.paginator, this.sort)
     this.dataSourceWithDetails = new PersonDetailDataSource(this.dataSource)
-    this._peopleDatabase.initialize()
-    this.matTableDataSource!.data = this._peopleDatabase.data.slice()
+    this._plantDatabase.initialize()
+    this.matTableDataSource!.data = this._plantDatabase.data.slice()
   }
 
   disconnect() {
@@ -116,15 +116,6 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
       case 'index': return index
     }
   }
-
-  // toggleColorColumn() {
-  //   const colorColumnIndex = this.displayedColumns.indexOf('color')
-  //   if (colorColumnIndex === -1) {
-  //     this.displayedColumns.push('color')
-  //   } else {
-  //     this.displayedColumns.splice(colorColumnIndex, 1)
-  //   }
-  // }
 
   toggleHighlight(property: string, enable: boolean) {
     enable ? this.highlights.add(property) : this.highlights.delete(property)

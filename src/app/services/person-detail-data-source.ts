@@ -1,6 +1,6 @@
 import {DataSource} from '@angular/cdk/collections'
 import {Observable} from 'rxjs/Observable'
-import {PlantData} from './people-database'
+import {PlantData} from './plant-database'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/operator/map'
 import {PersonDataSource} from './person-data-source'

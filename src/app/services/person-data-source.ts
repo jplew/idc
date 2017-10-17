@@ -1,12 +1,12 @@
 import {MatPaginator, MatSort} from '@angular/material'
 import {DataSource} from '@angular/cdk/collections'
 import {Observable} from 'rxjs/Observable'
-import {PeopleDatabase, PlantData} from './people-database'
+import {PlantDatabase, PlantData} from './plant-database'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/operator/map'
 
 export class PersonDataSource extends DataSource<any> {
-  constructor(private _peopleDatabase: PeopleDatabase,
+  constructor(private _plantDatabase: PlantDatabase,
               private _paginator: MatPaginator,
               private _sort: MatSort) {
     super()
@@ -16,7 +16,7 @@ export class PersonDataSource extends DataSource<any> {
     const displayDataChanges = [
       this._paginator.page,
       this._sort.sortChange,
-      this._peopleDatabase.dataChange
+      this._plantDatabase.dataChange
     ]
     return Observable.merge(...displayDataChanges).map(() => {
       const data = this.getSortedData()
@@ -33,7 +33,7 @@ export class PersonDataSource extends DataSource<any> {
 
   /** Returns a sorted copy of the database data. */
   getSortedData(): PlantData[] {
-    const data = this._peopleDatabase.data.slice()
+    const data = this._plantDatabase.data.slice()
     if (!this._sort.active || this._sort.direction === '') { return data }
 
     return data.sort((a, b) => {

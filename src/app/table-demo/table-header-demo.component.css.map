@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,KAAM;EACJ,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,aAAa;EAC9B,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,MAAM;;AAGjB,MAAO;EACL,SAAS,EAAE,IAAI;;AAGjB,QAAS;EACP,KAAK,EAAE,mBAAmB",
-"sources": ["table-header-demo.scss"],
-"names": [],
-"file": "table-header-demo.css"
-}
