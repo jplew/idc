@@ -12,6 +12,7 @@ import {
 import { MarkerManager, AgmMarker, GoogleMapsAPIWrapper } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
 import { AgmSnazzyInfoWindow } from '@agm/snazzy-info-window'
+import { DataService } from '../services/data.service';
 
 @Directive({
   selector: '[appMarkerAccessor]'
@@ -22,6 +23,7 @@ export class MarkerAccessorDirective implements OnDestroy, AfterContentInit {
   @ContentChildren(AgmSnazzyInfoWindow) snazzyIW: any
 
   constructor(
+    private dataService: DataService,
     @Host() private _markerComponent: AgmMarker,
     private _mapsWrapper: GoogleMapsAPIWrapper,
     private _mapAccessor: MapAccessorService,
@@ -38,6 +40,10 @@ export class MarkerAccessorDirective implements OnDestroy, AfterContentInit {
       .then((map) => {
         this._manager.getNativeMarker(this._markerComponent)
           .then((marker) => {
+
+            this.dataService.nativeMarkers.push(marker)
+
+            // console.log(this.dataService.nativeMarkers)
 
             const clickWindow = this.snazzyIW.find((item) => {
               return item.maxWidth === 700

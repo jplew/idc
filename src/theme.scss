@@ -6,16 +6,19 @@
 $idc-primary: mat-palette($mat-blue, A200);
 $idc-accent:  mat-palette($mat-green, A700);
 $idc-warn:    mat-palette($mat-red, 400);
-$light-grey: mat-color(mat-palette($mat-grey, 200));
-$light-blue: mat-color(mat-palette($mat-blue, 50));
 
 $idc-theme: mat-light-theme($idc-primary, $idc-accent, $idc-warn);
 
 @include angular-material-theme($idc-theme);
 
+
+// Custom Color classes and variables
+
 $primary: mat-color($idc-primary);
 $accent: mat-color($idc-accent);
 $warn: mat-color($idc-warn);
+$light-grey: mat-color(mat-palette($mat-grey, 200));
+$light-blue: mat-color(mat-palette($mat-blue, 50));
 
 .primary {
   color: $primary;
@@ -36,12 +39,22 @@ $warn: mat-color($idc-warn);
   background-color: $warn;
 }
 
+// Custom Typography classes and variables
 $idc-typography: mat-typography-config(
   $font-family: '"Open Sans", "Helvetica Neue", sans-serif'
 );
-
 @include angular-material-typography($idc-typography);
 
+$normal: 400;
+$semi-bold: 600;
+$bold: 700;
+
+.semi-bold {
+  font-weight: $semi-bold
+}
+
+
+// Global CSS
 html, body, #map, agm-map {
   width: 100%;
   height: 100%;
@@ -158,7 +171,7 @@ mat-toolbar {
   width: 332px;
 }
 .sidebar {
-  padding: 100px 30px 0;
+  padding: 90px 30px 0;
 }
 .col-toggle-buttons {
   margin-right: 25px;
@@ -266,8 +279,8 @@ hr {
 }
 .icon-floating {
   position: absolute;
-  top: 85px;
-  left: 40px;
+  top: 75px;
+  left: 30px;
   z-index: 5000;
 }
 
@@ -321,3 +334,81 @@ hr {
 .node-content-wrapper-active, .node-content-wrapper.node-content-wrapper-active:hover, .node-content-wrapper-active.node-content-wrapper-focused {
     background: $light-blue;
 }
+
+.sidenav-quality-section {
+  margin-top: 30px;
+  padding: 6px;
+}
+.sidenav-quality-box-wrapper {
+  margin-bottom: 20px;
+}
+.sidenav-quality-box {
+  background: white;
+  height: 74px;
+  -webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.18);
+  -moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.18);
+  box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.18);
+  padding: 5px;
+  text-align: center;
+}
+.sidenav-quality-box-empty {
+  background: none;
+}
+.sidenav-quality-value {
+  margin-top: 5px;
+  margin-left: -5px;
+}
+.icon-direction {
+  width: 18px;
+  height: 18px;
+  background-repeat: none;
+  display: inline-block;
+  top: 3px;
+  position: relative;
+}
+.icon-down-red {
+  background-image: url('/assets/images/icon-down-red.png');
+  width: 18px;
+  height: 18px;
+  background-repeat: none;
+  display: inline-block;
+  top: 4px;
+  position: relative;
+  
+}
+.icon-up-green {
+  background-image: url('/assets/images/icon-up-green.png');
+  width: 18px;
+  height: 18px;
+  background-repeat: none;
+  display: inline-block;
+  top: 4px;
+  position: relative;
+}
+
+.sidenav-quality-value.mat-caption {
+  font-weight: 600;
+}
+
+.sidenav-quality-caption.mat-caption {
+  margin-top: 1px;
+  font-size: 11px;
+  line-height: 14px;
+}
+.button-wrap {
+  margin: 40px 0 20px;
+  text-align: center;
+}
+.button-submit {
+  width: 140px;
+}
+.button-submit .mat-button-wrapper {
+  color: white;
+}
+
+.isHidden {
+  display: none
+}
+// .isVisible {
+//   display: block
+// }

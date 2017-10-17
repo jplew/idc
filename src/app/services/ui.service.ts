@@ -17,19 +17,20 @@ export class UiService {
     this.sidenav = sidenav
   }
 
-  public closeWindows(id, windows) {
-    // console.log(this.sidenav)
+  public closeWindows(loc, windows) {
+    // console.log(windows)
+
     const thisWindow = windows.find((window) => {
       // console.log(parseInt(window._marker._id, 10) + 1)
-      const windowId = parseInt(window._marker._id, 10)
-
-      return ( windowId ) === id
+      return ( window._marker.title ) === loc
     })
 
     windows.forEach(window => {
       // console.log(window._marker._id)
       window._closeInfoWindow()
     })
+
+    // console.log(thisWindow)
 
     thisWindow._openInfoWindow()
 

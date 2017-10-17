@@ -1,5 +1,5 @@
 <div class="sidebar" *ngIf="data.location else loading">
-  
+
   <div class="mat-headline">
     {{ data.location }}
   </div>
@@ -7,43 +7,78 @@
   <hr>
 
   <div class="icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-    <img src="../assets/images/icon-equipment.png" alt="Equipment icon"> <span class="mat-subheading-2">Equipment</span>
+    <img src="../assets/images/icon-equipment.png" alt="Equipment icon">
+    <span class="mat-subheading-2">Equipment</span>
   </div>
 
-
-<tree-root [nodes]="data.equipment">
-  <ng-template #treeNodeTemplate let-node let-index="index">
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0">
-      <span class="sidenav-row-name" fxFlex="4 1 auto">{{ node.data.name }}</span>
-      <span class="fill-remaining-space"></span>
-      <span class="sidenav-row-value {{ node.data.value > 70 ? 'accent' : 'warn' }}" fxFlex="1 1 auto">{{ node.data.value }}%</span>
-    </div>
-  </ng-template>
-</tree-root>
-  
-<hr>
-
-  <!-- <div *ngFor="let eq of data.equipment">
-    {{ eq.name }}
-    {{ eq.value }}
-    <div *ngFor="let prod of eq.children">
-      {{ prod.name }}
-      {{ prod.value }}
-      <div *ngFor="let batch of prod.children">
-        {{ batch.name }}
-        {{ batch.value }}
+  <tree-root [nodes]="data.equipment">
+    <ng-template #treeNodeTemplate let-node let-index="index">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0">
+        <span class="sidenav-row-name" fxFlex="4 1 auto">{{ node.data.name }}</span>
+        <span class="fill-remaining-space"></span>
+        <span class="sidenav-row-value {{ node.data.value > 70 ? 'accent' : 'warn' }}" fxFlex="1 1 auto">{{ node.data.value }}%</span>
       </div>
-    </div>
-  </div> -->
+    </ng-template>
+  </tree-root>
+
+  <hr>
 
   <div class="vert-spacer-30"></div>
 
   <div class="icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-    <img src="../assets/images/icon-equipment.png" alt="Equipment icon"> <span class="mat-subheading-2">Quality Performance</span>
+    <img src="../assets/images/icon-equipment.png" alt="Equipment icon">
+    <span class="mat-subheading-2">Quality Performance</span>
+  </div>
+
+  <div class="sidenav-quality-section">
+
+    <div class="sidenav-quality-box-wrapper" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+
+      <div class="sidenav-quality-box" fxFlex="33%">
+        <span class="icon-directon {{ data.yieldData[2].value > 70 ? 'icon-up-green' : 'icon-down-red' }}"></span>
+        <span class="sidenav-quality-value mat-caption {{ data.yieldData[2].value > 70 ? 'accent' : 'warn' }}">{{data.yieldData[2].value}}</span>
+        <div class="sidenav-quality-caption mat-caption">Scrap Percentage</div>
+      </div>
+
+      <div class="sidenav-quality-box" fxFlex="33%">
+        <span class="icon-directon {{ data.yieldData[3].value > 70 ? 'icon-up-green' : 'icon-down-red' }}"></span>
+        <span class="sidenav-quality-value mat-caption {{ data.yieldData[3].value > 70 ? 'accent' : 'warn' }}">{{data.yieldData[3].value}}</span>
+        <div class="sidenav-quality-caption mat-caption">Sigma Level</div>
+      </div>
+
+      <div class="sidenav-quality-box" fxFlex="33%">
+        <span class="icon-directon {{ data.yieldData[0].value > 70 ? 'icon-up-green' : 'icon-down-red' }}"></span>
+        <span class="sidenav-quality-value mat-caption {{ data.yieldData[0].value > 70 ? 'accent' : 'warn' }}">{{data.yieldData[0].value}}</span>
+        <div class="sidenav-quality-caption mat-caption">Parts Per Million</div>
+      </div>
+    </div>
+
+    <div class="sidenav-quality-box-wrapper" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+
+      <div class="sidenav-quality-box" fxFlex="33%">
+        <span class="icon-directon {{ data.yieldData[4].value > 70 ? 'icon-up-green' : 'icon-down-red' }}"></span>
+        <span class="sidenav-quality-value mat-caption {{ data.yieldData[4].value > 70 ? 'accent' : 'warn' }}">{{data.yieldData[4].value}}</span>
+        <div class="sidenav-quality-caption mat-caption">First Pass Yield</div>
+      </div>
+
+      <div class="sidenav-quality-box" fxFlex="33%">
+        <span class="icon-directon {{ data.yieldData[1].value > 70 ? 'icon-up-green' : 'icon-down-red' }}"></span>
+        <span class="sidenav-quality-value mat-caption {{ data.yieldData[1].value > 70 ? 'accent' : 'warn' }}">{{data.yieldData[1].value}}</span>
+        <div class="sidenav-quality-caption mat-caption">Cost of Quality</div>
+      </div>
+
+      <div class="sidenav-quality-box-empty" fxFlex="33%">
+      </div>
+    </div>
+
+    <div class="button-wrap">
+      <button class="button-submit" color="accent" mat-raised-button>Submit</button>
+    </div>
+
   </div>
 
 </div>
 
 <ng-template #loading>
-    <div class="sidebar mat-body-2">Select a plant by clicking a map marker, or by using search.</div>
+  <div class="sidebar mat-body-2">Select a plant by clicking a map marker, or by using <span class="semi-bold">Plant Search</span>.</div>
 </ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren } from '@angular/core'
+import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, OnDestroy, AfterContentInit } from '@angular/core'
 import { GoogleMap } from '@agm/core/services/google-maps-types'
 import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper, AgmInfoWindow } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
@@ -14,12 +14,14 @@ declare var google: any
   styleUrls: ['./map.component.css'],
   templateUrl: './map.component.html'
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
+  myMarkers: any
 
   map: any
   @ViewChild(AgmMap) mapElement: any
   @ViewChildren(AgmInfoWindow) infoWindow: any
   @ViewChildren(AgmSnazzyInfoWindow) snazzyIW: any
+  @ViewChildren(AgmMarker) agmMarkers: any
 
   centerLat: number
   centerLng: number
@@ -32,7 +34,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   lng: number
 
   iconGood = '../../assets/images/location-green.png'
-  iconBad  = '../../assets/images/location-red.png'
+  iconBad = '../../assets/images/location-red.png'
 
   constructor(
     private dataService: DataService,
@@ -47,12 +49,14 @@ export class MapComponent implements OnInit, AfterViewInit {
   public loadAPIWrapper(map) {
     this.map = map
   }
-  public markerClicked = (markerObj) => {
+  markerClicked = (markerObj) => {
+    // console.log(markerObj)
 
     this.uiService.closeDrawer()
 
     const id = markerObj.id
-    this.uiService.closeWindows(id, this.snazzyIW)
+    const loc = markerObj.location
+    this.uiService.closeWindows(loc, this.snazzyIW)
     this.dataService.currentPlantId = id
     this.dataService.changePlant(id)
     // console.log(markerObj)
@@ -73,38 +77,112 @@ export class MapComponent implements OnInit, AfterViewInit {
     * 70. App will update the UI based on the 'isGoodYield' boolean introduced
     * here. */
     this.dataService.getAll()
-      .map( res => {
+      .map(res => {
         const obj = res.json()
         obj.forEach(element => {
-          const fpyRow = element.yieldData.find(({cat}) => {
+          const fpyRow = element.yieldData.find(({ cat }) => {
             return cat === 'FPY'
           })
-          element.isGoodYield = ( fpyRow.value > 70 ) ? true : false
+          element.isGoodYield = (fpyRow.value > 70) ? true : false
         })
         return obj
       })
       .subscribe(
-        response => {
-          // this 'markers' object will be sent to Google Maps to generate markers
-          this.markers = response
-          // console.log(this.markers)
-        },
-        error => {
-          console.log(error)
-        })
+      response => {
+        // this 'markers' object will be sent to Google Maps to generate markers
+        this.markers = response
+        this.dataService.plantData = response
+        // console.log(this.markers)
+      },
+      error => {
+        console.log(error)
+      })
 
-    // this._apiWrapper.getNativeMap()
-    //   .then((map: GoogleMap) => {
-    //     this.myMap = map
-    //     console.log(map)
-    //     this._mapAccessor.nativeMap = map
-    //     this._mapAccessor.markerManager = this._markerManager
-    //   })
+
+  }
+
+  ngAfterContentInit(): void {
   }
 
   ngAfterViewInit(): void {
     // this.registerEventHandlers()
+    console.log('Create! ', this.agmMarkers)
+
+    this._apiWrapper.getNativeMap()
+      .then((map: GoogleMap) => {
+        this.map = map
+        console.log(map)
+        this._mapAccessor.nativeMap = map
+        // this._mapAccessor.markerManager = this._markerManager
+
+        this.agmMarkers.forEach(element => {
+          console.log(element)
+        })
+        //   console.log('Heyo', this._markerManager.getNativeMarker(element))
+
+      })
+
+    // this.myMarkers = this.agmMarkers
+    // for (const i of this.agmMarkers) {
+    //   console.log(i)
+    // }
+    // this.agmMarkers.forEach(element => {
+    //   console.log(element)
+    // })
+
+    // this.myMarkers = this.agmMarkers.foreach(element => {
+    //   // console.log(element)
+    //   // this._markerManager.getNativeMarker(element)
+    //   console.log('Heyo', this._markerManager.getNativeMarker(element))
+    //   // return this._markerManager.getNativeMarker(element)
+    //   //  this._markerManager.getNativeMarker(element)
+    //   // .then( marker => marker )
+    // })
+    // console.log(this.myMarkers)
+
   }
+
+  ngOnDestroy(): void {
+
+    // console.log(this.agmMarkers)
+    // console.log(this.dataService.nativeMarkers)
+
+    this.dataService.nativeMarkers.forEach(element => {
+      element.setMap(null)
+      element = null
+    })
+    this.dataService.nativeMarkers.length = 0
+    // console.log(this.map)
+    this.agmMarkers = []
+    this.agmMarkers.length = 0
+
+    // console.log('Destroy! ', this.agmMarkers)
+
+    // console.log(this._mapAccessor.markers.values())
+
+    // console.log(this._markerManager)
+
+    // this._mapAccessor.nativeMap = this.map
+
+    // console.log(this._mapAccessor.markerManager)
+    // this._markerManager = this._mapAccessor.markerManager
+
+    // const nativeMarkers = this.agmMarkers.foreach(element => {
+    //   console.log(element)
+    //   this._markerManager.getNativeMarker(element)
+    //   console.log('Heyo', this._markerManager.getNativeMarker(element))
+    //   // return this._markerManager.getNativeMarker(element)
+    //   //  this._markerManager.getNativeMarker(element)
+    //   // .then( marker => marker )
+    // })
+    // console.log(nativeMarkers)
+
+  }
+
+
+  // ngOnDestroy(): void {
+  //   this.snazzyIW = []
+  // }
 
   mapClicked($event: MouseEvent) {
     // console.log('I was clicked')
@@ -187,6 +265,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     //   _marker.setAnimation(google.maps.Animation.BOUNCE)
     //   this.googleMap.panTo(location)
   }
+
+
 }
 
 

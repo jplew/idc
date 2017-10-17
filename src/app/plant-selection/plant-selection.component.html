@@ -1,0 +1,41 @@
+<div class="icon-floating icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+  <img src="../assets/images/icon-plant.png" alt="Plant Icon"> <span class="mat-subheading-2">Plant Map</span>
+</div>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav position="end" mode="side" opened="false">
+    <app-sidenav-content [data]="currentPlant"></app-sidenav-content>
+    <!-- <app-sidenav-content [data]=""></app-sidenav-content> -->
+  </mat-sidenav>
+
+  <app-map *ngIf="isMap else listView"></app-map>
+
+  <ng-template #listView>
+    <app-list-view></app-list-view>
+  </ng-template>
+
+  <div class="overlay" fxLayout="row" fxLayoutAlign="end start">
+
+    <div class="col-toggle-buttons" fxFlex="10">
+
+      <mat-button-toggle-group #group="matButtonToggleGroup">
+
+        <mat-button-toggle #map (click)="showView(map.value)" value="map" checked="true">
+          <mat-icon>map</mat-icon>
+        </mat-button-toggle>
+
+        <mat-button-toggle #list (click)="showView(list.value)" value="list">
+          <mat-icon>list</mat-icon>
+        </mat-button-toggle>
+
+      </mat-button-toggle-group>
+
+      <!-- <button mat-mini-fab class="example-fab" (click)="sidenav.toggle()">
+        <mat-icon>location_on</mat-icon>
+      </button> -->
+
+    </div>
+  </div>
+
+</mat-sidenav-container>

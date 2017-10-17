@@ -14,6 +14,7 @@ export class DataService {
   currentPlantId: any
   currentPlant: any
   url: string
+  nativeMarkers: any[]
 
   // Observable string sources
   private plantChangedSource = new Subject<number>()
@@ -22,6 +23,7 @@ export class DataService {
   plantChanged$ = this.plantChangedSource.asObservable()
 
   constructor(private http: Http) {
+    this.nativeMarkers = []
     this.url = '../../assets/json/plant-info.json'
   }
 
@@ -33,30 +35,6 @@ export class DataService {
     return this.http.get(this.url)
   }
 
-  getPlants() {
-
-    this.getAll()
-      .map(res => {
-        const obj = res.json()
-        obj.forEach(element => {
-          const fpyRow = element.yieldData.find(({ cat }) => {
-            return cat === 'FPY'
-          })
-          element.isGoodYield = (fpyRow.value > 70) ? true : false
-        })
-        return obj
-      })
-      .subscribe(
-      response => {
-        // this 'markers' object will be sent to Google Maps to generate markers
-
-        this.plantData = response
-        console.log(this.plantData)
-      },
-      error => {
-        console.log(error)
-      })
-  }
   // createPost(post) {
   //   // post.id = 12
   //   return this.http.post(this.url, post)
