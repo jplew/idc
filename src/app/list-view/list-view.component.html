@@ -7,11 +7,11 @@
         <input matInput #filter placeholder="Filter users">
       </mat-form-field>
     </div>
-    
+
     <mat-paginator #paginator [length]="_plantData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
 
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="tableSource">
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

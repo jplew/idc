@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule, Routes } from '@angular/router'
+import { FormControl, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module'
 import { MaterialModule } from './material.module'
@@ -14,6 +15,7 @@ import { TreeModule } from 'angular-tree-component'
 import { MapAccessorService } from '../services/map-accessor.service'
 import { UiService } from '../services/ui.service'
 import { DataService } from '../services/data.service'
+import { PeopleDatabase } from '../services/people-database'
 
 import { MarkerAccessorDirective } from '../directives/marker-accessor.directive'
 
@@ -29,6 +31,8 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 import { MapViewComponent } from '../map-view/map-view.component'
 import { ListViewComponent } from '../list-view/list-view.component'
 import { PlantSelectionComponent } from '../plant-selection/plant-selection.component'
+import { TableDemoComponent } from '../table-demo/table-demo.component'
+import { TableHeaderDemoComponent } from '../table-demo/table-header-demo.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +48,9 @@ import { PlantSelectionComponent } from '../plant-selection/plant-selection.comp
     PageNotFoundComponent,
     MapViewComponent,
     ListViewComponent,
-    PlantSelectionComponent
+    PlantSelectionComponent,
+    TableDemoComponent,
+    TableHeaderDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +63,8 @@ import { PlantSelectionComponent } from '../plant-selection/plant-selection.comp
       apiKey: 'AIzaSyD6PIv2LqGHNs_UVGWJo4vcACTXeh5fmys'
     }),
     AgmSnazzyInfoWindowModule,
-    TreeModule
+    TreeModule,
+    ReactiveFormsModule
   ],
   providers: [
     AgmMarker,
@@ -65,7 +72,8 @@ import { PlantSelectionComponent } from '../plant-selection/plant-selection.comp
     GoogleMapsAPIWrapper,
     MarkerManager,
     UiService,
-    DataService
+    DataService,
+    PeopleDatabase
   ],
   bootstrap: [AppComponent]
 })

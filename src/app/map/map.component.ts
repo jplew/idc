@@ -107,7 +107,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
 
   ngAfterViewInit(): void {
     // this.registerEventHandlers()
-    console.log('Create! ', this.agmMarkers)
+    // console.log('Create! ', this.agmMarkers)
 
     this._apiWrapper.getNativeMap()
       .then((map: GoogleMap) => {

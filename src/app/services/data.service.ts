@@ -35,7 +35,6 @@ export class DataService {
     this.plantChangedSource.next(id)
   }
 
-
   emitData() {
     this.getAll()
       .map(res => {

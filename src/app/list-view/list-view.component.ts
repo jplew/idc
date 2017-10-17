@@ -1,9 +1,6 @@
 import {Component, ElementRef, ViewChild, OnInit, Input, AfterContentInit, ChangeDetectorRef} from '@angular/core'
 import {DataSource} from '@angular/cdk/collections'
-import {MatPaginator } from '@angular/material'
-
-import { MatTableDataSource } from '@angular/material'
-
+import {MatPaginator} from '@angular/material'
 import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 import {Observable} from 'rxjs/Observable'
 import 'rxjs/add/operator/startWith'
@@ -14,9 +11,6 @@ import 'rxjs/add/operator/distinctUntilChanged'
 import 'rxjs/add/observable/fromEvent'
 import { DataService } from '../services/data.service'
 
-export class Plant {
-  id: number
-}
 /**
  * @title Table with sorting
  */
@@ -40,7 +34,6 @@ export class ListViewComponent implements OnInit, AfterContentInit {
       })
 
   }
-  tableSource: MatTableDataSource<any>
 
   ngAfterContentInit() {
 
