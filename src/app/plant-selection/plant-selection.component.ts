@@ -26,10 +26,10 @@ export class PlantSelectionComponent implements OnInit {
     this.plantData = this.dataService.plantData
     this.currentPlant = {}
     this.isMap = true
-    this.isMapHidden = true
-    this.isListHidden = false
-    // this.isMapHidden = false
-    // this.isListHidden = true
+    // this.isMapHidden = true
+    // this.isListHidden = false
+    this.isMapHidden = false
+    this.isListHidden = true
 
     dataService.plantChanged$.subscribe(
       id => {

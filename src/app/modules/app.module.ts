@@ -32,6 +32,8 @@ import { MapViewComponent } from '../map-view/map-view.component'
 import { ListViewComponent } from '../list-view/list-view.component'
 import { PlantSelectionComponent } from '../plant-selection/plant-selection.component'
 import { TableDemoComponent } from '../table-demo/table-demo.component'
+import { ListDialogComponent } from '../list-dialog/list-dialog.component'
+import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant.component'
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { TableDemoComponent } from '../table-demo/table-demo.component'
     ListViewComponent,
     PlantSelectionComponent,
     TableDemoComponent,
+    ListDialogComponent,
+    ListDialogPlantComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +76,9 @@ import { TableDemoComponent } from '../table-demo/table-demo.component'
     UiService,
     DataService,
     PlantDatabase
+  ],
+  entryComponents: [
+    ListDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

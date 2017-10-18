@@ -18,7 +18,6 @@
 
     <mat-table #table [dataSource]="tableSource">
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

@@ -1,10 +1,9 @@
-<div [class.isHidden]="isMapHidden" class="icon-floating icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-  <img src="../assets/images/icon-plant.png" alt="Plant Icon">
-  <span class="mat-subheading-2">Plant {{ (isMapHidden) ? 'List' : 'Map' }}</span>
-</div>
-
 <mat-sidenav-container class="sidenav-container">
 
+  <div [class.isHidden]="isMapHidden" class="icon-floating icon-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <img src="../assets/images/icon-plant.png" alt="Plant Icon">
+    <span class="mat-subheading-2">Plant {{ (isMapHidden) ? 'List' : 'Map' }}</span>
+  </div>
 
   <div class="overlay" fxLayout="row" fxLayoutAlign="end start">
 

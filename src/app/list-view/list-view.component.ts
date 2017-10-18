@@ -19,6 +19,7 @@ import { DataService } from '../services/data.service'
   templateUrl: './list-view.component.html',
 })
 export class ListViewComponent implements OnInit, AfterContentInit {
+
   displayedColumns = ['id', 'location', 'region', ]
   _plantData: any
   dataSource: ExampleDataSource | null

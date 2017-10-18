@@ -1,16 +1,18 @@
-import {Component, ViewChild, AfterViewInit, OnInit, Input} from '@angular/core'
+import {Component, ViewChild, AfterViewInit, OnInit, Input, Inject} from '@angular/core'
 import {PlantDatabase, PlantData} from '../services/plant-database'
 import {PersonDataSource} from '../services/person-data-source'
-import {MatPaginator, MatSort, MatTableDataSource } from '@angular/material'
+import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material'
 import {DetailRow, PersonDetailDataSource} from '../services/person-detail-data-source'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import {FormControl} from '@angular/forms'
+import { ListDialogComponent } from '../list-dialog/list-dialog.component'
+import { UiService } from '../services/ui.service';
 
-export type UserProperties = 'location' | 'region' | 'yieldData' | undefined
+export type UserProperties = 'arrow' | 'location' | 'region' | 'yieldData' | undefined
 
-export type TrackByStrategy = 'id' | 'reference' | 'index'
+export type TrackByStrategy = 'reference' | 'index'
 
-const properties = ['location', 'region', 'yieldData']
+const properties = ['arrow', 'location', 'region', 'yieldData']
 
 @Component({
   moduleId: module.id,
@@ -26,8 +28,9 @@ const properties = ['location', 'region', 'yieldData']
   ],
 })
 export class TableDemoComponent implements OnInit, AfterViewInit {
-  dataSource: PersonDataSource | null
-  dataSourceWithDetails: PersonDetailDataSource | null
+
+  // dataSource: PersonDataSource | null
+  // dataSourceWithDetails: PersonDetailDataSource | null
   matTableDataSource = new MatTableDataSource<PlantData>()
   displayedColumns: UserProperties[] = []
   trackByStrategy: TrackByStrategy = 'reference'
@@ -42,6 +45,8 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   expandedPerson: PlantData
 
+  dialogRef: MatDialogRef<ListDialogComponent> | null
+
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort
   @ViewChild('paginatorForDataSource') paginatorForDataSource: MatPaginator
@@ -51,7 +56,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   isDetailRow = (row: DetailRow|PlantData) => row.hasOwnProperty('detailRow')
 
-  constructor(public _plantDatabase: PlantDatabase) {
+  constructor(public dialog: MatDialog, public _plantDatabase: PlantDatabase, private uiService: UiService) {
     this.matTableDataSource.sortingDataAccessor = (data: PlantData, property: string) => {
       switch (property) {
         case 'location': return data.location
@@ -62,6 +67,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
     }
     this.matTableDataSource.filterTermAccessor = (data: PlantData) => data.location
     this.filter.valueChanges.subscribe(filter => this.matTableDataSource!.filter = filter)
+    this.toggleHighlight('even', true)
   }
 
   ngAfterViewInit() {
@@ -75,33 +81,50 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
     this.connect()
   }
 
-  addDynamicColumnDef() {
-    const nextProperty = properties[this.dynamicColumnDefs.length]
-    this.dynamicColumnDefs.push({
-      id: nextProperty.toUpperCase(),
-      property: nextProperty,
-      headerText: nextProperty
-    })
-
-    this.dynamicColumnIds = this.dynamicColumnDefs.map(columnDef => columnDef.id)
+  dialogConfig(x: number = null, y: number = null, loc: string): MatDialogConfig {
+    return {
+      disableClose: false,
+      panelClass: 'custom-overlay-pane-class',
+      hasBackdrop: false,
+      backdropClass: '',
+      width: '180px',
+      height: '',
+      minWidth: '',
+      minHeight: '',
+      maxWidth: '180px',
+      maxHeight: '',
+      position: {
+        top: (y) ? `${y - 40}px` : '',
+        right: '',
+        bottom: '',
+        left: (x) ? `${x + 50}px` : ''
+      },
+      data: this._plantDatabase.data.find((item) => {
+        return item.location === loc
+      })
+    }
   }
 
-  removeDynamicColumnDef() {
-    this.dynamicColumnDefs.pop()
-    this.dynamicColumnIds.pop()
+  hoverOn(e, location) {
+    console.log(this.dialogRef)
+    this.dialogRef = this.dialog.open(ListDialogComponent, this.dialogConfig(e.x, e.y, location))
+  }
+  hoverOff(e) {
+    console.log(this.dialogRef)
+    this.dialogRef.close()
+  }
+
+  onClick() {
+    this.uiService.openDrawer()
   }
 
   connect() {
-    this.displayedColumns = ['location', 'region', 'yieldData']
-    this.dataSource = new PersonDataSource(this._plantDatabase,
-        this.paginator, this.sort)
-    this.dataSourceWithDetails = new PersonDetailDataSource(this.dataSource)
+    this.displayedColumns = ['arrow', 'location', 'region', 'yieldData']
     this._plantDatabase.initialize()
     this.matTableDataSource!.data = this._plantDatabase.data.slice()
   }
 
   disconnect() {
-    this.dataSource = null
     this.displayedColumns = []
   }
 
@@ -120,5 +143,5 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
   toggleHighlight(property: string, enable: boolean) {
     enable ? this.highlights.add(property) : this.highlights.delete(property)
   }
-}
 
+}

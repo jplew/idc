@@ -56,7 +56,7 @@ export class PlantDatabase {
     copiedData.push({
       location: thisPlant.location,
       region: thisPlant.region,
-      yieldData: thisPlant.yieldData[4].value
+      yieldData: thisPlant.yieldData
     })
 
     this.dataChange.next(copiedData)
