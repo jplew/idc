@@ -12,13 +12,13 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 export class DataService {
 
   plantData: any
-  currentPlantId: any
+  currentPlantLocation: string
   currentPlant: any
   url: string
   nativeMarkers: any[]
 
   // Observable string sources
-  private plantChangedSource = new Subject<number>()
+  private plantChangedSource = new Subject<string>()
   private _loadDataSource = new BehaviorSubject<any[]>([])
 
   // Observable string streams
@@ -31,8 +31,8 @@ export class DataService {
     this.nativeMarkers = []
   }
 
-  changePlant(id: number) {
-    this.plantChangedSource.next(id)
+  changePlant(location: string) {
+    this.plantChangedSource.next(location)
   }
 
   emitData() {

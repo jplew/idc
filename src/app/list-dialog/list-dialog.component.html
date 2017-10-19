@@ -7,15 +7,13 @@
   <hr>
 
   <table class="table yield-data mat-caption">
-    <tbody>
-      <tr *ngFor="let row of data.yieldData">
-        <td class="hover-table-icon">
-          <img src="{{ row.value > 70 ? circleGreen : circleRed }}" alt="">
-        </td>
-        <td class="hover-table-cat">{{ row.cat }}</td>
-        <td class="hover-table-value {{ row.value > 70 ? 'accent' : 'warn' }}">{{ row.value }} %</td>
-      </tr>
-    </tbody>
+    <tr *ngFor="let row of data.yieldData">
+      <td class="hover-table-icon">
+        <img src="{{ row.value > 70 ? circleGreen : circleRed }}" alt="">
+      </td>
+      <td class="hover-table-cat">{{ row.cat }}</td>
+      <td class="hover-table-value {{ row.value > 70 ? 'accent' : 'warn' }}">{{ row.value }} %</td>
+    </tr>
   </table>
 
 </div>

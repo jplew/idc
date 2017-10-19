@@ -7,6 +7,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations'
 import {FormControl} from '@angular/forms'
 import { ListDialogComponent } from '../list-dialog/list-dialog.component'
 import { UiService } from '../services/ui.service';
+import { DataService } from '../services/data.service';
 
 export type UserProperties = 'arrow' | 'location' | 'region' | 'yieldData' | undefined
 
@@ -37,6 +38,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
   changeReferences = false
   highlights = new Set<string>()
   wasExpanded = new Set<PlantData>()
+  sidenavOpen: any
 
   filter = new FormControl()
 
@@ -56,7 +58,13 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   isDetailRow = (row: DetailRow|PlantData) => row.hasOwnProperty('detailRow')
 
-  constructor(public dialog: MatDialog, public _plantDatabase: PlantDatabase, private uiService: UiService) {
+  constructor(
+    public dialog: MatDialog,
+    public _plantDatabase: PlantDatabase,
+    private uiService: UiService,
+    private dataService: DataService
+    ) {
+    this.sidenavOpen = false
     this.matTableDataSource.sortingDataAccessor = (data: PlantData, property: string) => {
       switch (property) {
         case 'location': return data.location
@@ -81,41 +89,19 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
     this.connect()
   }
 
-  dialogConfig(x: number = null, y: number = null, loc: string): MatDialogConfig {
-    return {
-      disableClose: false,
-      panelClass: 'custom-overlay-pane-class',
-      hasBackdrop: false,
-      backdropClass: '',
-      width: '180px',
-      height: '',
-      minWidth: '',
-      minHeight: '',
-      maxWidth: '180px',
-      maxHeight: '',
-      position: {
-        top: (y) ? `${y - 40}px` : '',
-        right: '',
-        bottom: '',
-        left: (x) ? `${x + 50}px` : ''
-      },
-      data: this._plantDatabase.data.find((item) => {
-        return item.location === loc
-      })
+  onClick(loc) {
+
+    this.dataService.changePlant(loc)
+    this.sidenavOpen = this.uiService.checkDrawer()
+
+    if (this.sidenavOpen === true && this.dataService.currentPlantLocation === loc) {
+      this.uiService.closeDrawer()
+    } else {
+      this.uiService.openDrawer()
     }
-  }
 
-  hoverOn(e, location) {
-    console.log(this.dialogRef)
-    this.dialogRef = this.dialog.open(ListDialogComponent, this.dialogConfig(e.x, e.y, location))
-  }
-  hoverOff(e) {
-    console.log(this.dialogRef)
-    this.dialogRef.close()
-  }
+    this.dataService.currentPlantLocation = loc
 
-  onClick() {
-    this.uiService.openDrawer()
   }
 
   connect() {
@@ -126,11 +112,6 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   disconnect() {
     this.displayedColumns = []
-  }
-
-  getOpacity(progress: number) {
-    const distanceFromMiddle = Math.abs(50 - progress)
-    return distanceFromMiddle / 50 + .3
   }
 
   userTrackBy = (index: number, item: PlantData) => {

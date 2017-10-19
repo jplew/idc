@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { AgmCoreModule, GoogleMapsAPIWrapper, MarkerManager, AgmMarker } from '@agm/core'
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window'
 import { TreeModule } from 'angular-tree-component'
+import { NgxPopperModule } from 'ngx-popper'
 
 import { MapAccessorService } from '../services/map-accessor.service'
 import { UiService } from '../services/ui.service'
@@ -33,7 +34,8 @@ import { ListViewComponent } from '../list-view/list-view.component'
 import { PlantSelectionComponent } from '../plant-selection/plant-selection.component'
 import { TableDemoComponent } from '../table-demo/table-demo.component'
 import { ListDialogComponent } from '../list-dialog/list-dialog.component'
-import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant.component'
+import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant.component';
+import { PlantSearchService } from '../plant-search.service'
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant
     }),
     AgmSnazzyInfoWindowModule,
     TreeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPopperModule
   ],
   providers: [
     AgmMarker,
@@ -75,7 +78,8 @@ import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant
     MarkerManager,
     UiService,
     DataService,
-    PlantDatabase
+    PlantDatabase,
+    PlantSearchService
   ],
   entryComponents: [
     ListDialogComponent,

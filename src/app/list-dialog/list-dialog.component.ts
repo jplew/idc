@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core'
+import { Component, OnInit, Inject, Input } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material'
 
 @Component({
@@ -8,9 +8,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material'
 })
 export class ListDialogComponent implements OnInit {
 
-  constructor(
-    public dialogRef: MatDialogRef<ListDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  @Input() data: any
+  circleGreen = '../../assets/images/circle-green.png'
+  circleRed   = '../../assets/images/circle-red.png'
+
+  constructor() { }
 
   ngOnInit() {
   }

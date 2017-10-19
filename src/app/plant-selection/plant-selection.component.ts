@@ -11,7 +11,7 @@ import { DataService } from '../services/data.service'
 export class PlantSelectionComponent implements OnInit {
 
   isMap: boolean
-  currentPlantId: number
+  currentPlantLocation: string
   currentPlant: any
   plantData: any
   isMapHidden: boolean
@@ -32,10 +32,10 @@ export class PlantSelectionComponent implements OnInit {
     this.isListHidden = true
 
     dataService.plantChanged$.subscribe(
-      id => {
-        this.currentPlantId = id
+      location => {
+        this.currentPlantLocation = location
         this.currentPlant = this.dataService.plantData.find((item) => {
-          return item.id === id
+          return item.location === location
         })
       })
   }

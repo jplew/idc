@@ -449,3 +449,32 @@ hr {
   -moz-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.10)!important;
   box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.10)!important;
 }
+.popper-wrapper {
+  width: fit-content;
+  padding-right: 15px;
+}
+.popper-wrapper:hover {
+  text-decoration: underline;
+}
+
+.ngxp__container {
+  border: none!important;
+  -webkit-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.150)!important;
+  -moz-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.150)!important;
+  box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.150)!important;
+  padding: 20px!important;
+  z-index: 1000;
+  background-color: white;
+}
+
+.ngxp__container[x-placement^="right"] {
+  margin-left: 10px;
+}
+
+.ngxp__container[x-placement^="right"] .ngxp__arrow {
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent!important;
+  -webkit-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.150)!important;
+  -moz-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.150)!important;
+  box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.150)!important;
+}

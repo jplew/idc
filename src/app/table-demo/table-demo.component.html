@@ -18,7 +18,21 @@
         Plant Name
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> 
-        <a (click)="onClick(row.location)" (mouseenter)="hoverOn($event, row.location)" (mouseleave)="hoverOff($event)">{{row.location}}</a>
+
+        <div class="popper-wrapper" 
+          #popper 
+          [popper]="popperContent" 
+          [popperShowOnStart]="false" 
+          [popperTrigger]="'hover'" 
+          [popperPlacement]="'right'"
+          (click)="onClick(row.location)">
+          {{row.location}}
+        </div>
+        
+        <popper-content #popperContent>
+          <app-list-dialog [data]="row"></app-list-dialog>
+        </popper-content>
+
       </mat-cell>
     </ng-container>
 

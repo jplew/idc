@@ -28,6 +28,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
   centerLng: number
   latNorth: number
   latSouth: number
+  sidenavOpen: boolean
 
   markers: any[]
 
@@ -42,7 +43,9 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     private uiService: UiService,
     private _apiWrapper: GoogleMapsAPIWrapper,
     private _mapAccessor: MapAccessorService,
-    private _markerManager: MarkerManager) {
+    private _markerManager: MarkerManager
+    ) {
+    this.sidenavOpen = false
     this.lat = 51.678418
     this.lng = 7.809007
   }
@@ -51,20 +54,25 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     this.map = map
   }
   markerClicked = (markerObj) => {
-    // console.log(markerObj)
 
-    this.uiService.closeDrawer()
+    this.sidenavOpen = this.uiService.checkDrawer()
 
     const id = markerObj.id
     const loc = markerObj.location
     this.uiService.closeWindows(loc, this.snazzyIW)
-    this.dataService.currentPlantId = id
-    this.dataService.changePlant(id)
-    // console.log(markerObj)
-    this.uiService.openDrawer()
-    // console.log(this.snazzyIW)
 
-    // hoverWindow.close(map, marker);
+    this.dataService.changePlant(loc)
+
+    console.log(this.sidenavOpen)
+    console.log(this.dataService.currentPlantLocation)
+
+    if (this.sidenavOpen === true && this.dataService.currentPlantLocation === loc) {
+      this.uiService.closeDrawer()
+    } else {
+      this.uiService.openDrawer()
+    }
+
+    this.dataService.currentPlantLocation = loc
 
     // pretty cool, uncomment this to pan to location on each marker click
     // const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
@@ -190,7 +198,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     // this.infoWindow.forEach(element => {
     //   element.close()
     // })
-    this.uiService.toggle()
+    this.uiService.toggleDrawer()
   }
 
   checkBounds() {

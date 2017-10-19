@@ -9,10 +9,6 @@ export class UiService {
 
   constructor() { }
 
-  // getColors() {
-  //   return COLORS
-  // }
-
   public setSidenav(sidenav: MatSidenav) {
     this.sidenav = sidenav
   }
@@ -30,14 +26,11 @@ export class UiService {
       window._closeInfoWindow()
     })
 
-    // console.log(thisWindow)
-
     thisWindow._openInfoWindow()
 
   }
 
   public openDrawer(): Promise<MatDrawerToggleResult> {
-    // console.log(this.sidenav)
     return this.sidenav.open()
   }
 
@@ -45,8 +38,12 @@ export class UiService {
     return this.sidenav.close()
   }
 
-  public toggle(isOpen?: boolean): Promise<MatDrawerToggleResult> {
+  public toggleDrawer(isOpen?: boolean): Promise<MatDrawerToggleResult> {
     return this.sidenav.toggle(isOpen)
+  }
+
+  checkDrawer(): boolean {
+    return this.sidenav.opened
   }
 
 }
