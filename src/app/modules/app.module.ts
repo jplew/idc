@@ -33,7 +33,6 @@ import { ClickWindowComponent } from '../click-window/click-window.component'
 import { SidenavContentComponent } from '../sidenav-content/sidenav-content.component'
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component'
 import { MapViewComponent } from '../map-view/map-view.component'
-import { ListViewComponent } from '../list-view/list-view.component'
 import { PlantSelectionComponent } from '../plant-selection/plant-selection.component'
 import { TableDemoComponent } from '../table-demo/table-demo.component'
 import { ListDialogComponent } from '../list-dialog/list-dialog.component'
@@ -52,7 +51,6 @@ import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant
     SidenavContentComponent,
     PageNotFoundComponent,
     MapViewComponent,
-    ListViewComponent,
     PlantSelectionComponent,
     TableDemoComponent,
     ListDialogComponent,

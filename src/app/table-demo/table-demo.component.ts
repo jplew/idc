@@ -1,5 +1,4 @@
 import {Component, ViewChild, AfterViewInit, OnInit, Input, Inject} from '@angular/core'
-import {PlantDatabaseService, PlantData} from '../services/plant-database.service'
 import {PersonDataSource} from '../services/person-data-source'
 import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material'
 import {DetailRow, PersonDetailDataSource} from '../services/person-detail-data-source'
@@ -8,6 +7,7 @@ import {FormControl} from '@angular/forms'
 import { ListDialogComponent } from '../list-dialog/list-dialog.component'
 import { UiService } from '../services/ui.service'
 import { DataService } from '../services/data.service'
+import { PlantData } from '../services/in-mem-plant.service'
 
 export type UserProperties = 'arrow' | 'location' | 'region' | 'yieldData' | undefined
 
@@ -39,6 +39,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
   highlights = new Set<string>()
   wasExpanded = new Set<PlantData>()
   sidenavOpen: any
+  plants: PlantData[]
 
   filter = new FormControl()
 
@@ -60,7 +61,6 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialog: MatDialog,
-    public _plantDatabase: PlantDatabaseService,
     private uiService: UiService,
     private dataService: DataService
     ) {
@@ -69,12 +69,12 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
       switch (property) {
         case 'location': return data.location
         case 'region': return data.region
-        case 'yieldData': return data.yieldData
+        case 'yieldData': return data.yieldData[4].value
         default: return ''
       }
     }
-    this.matTableDataSource.filterTermAccessor = (data: PlantData) => data.location
-    this.filter.valueChanges.subscribe(filter => this.matTableDataSource!.filter = filter)
+    // this.matTableDataSource.filterTermAccessor = (data: PlantData) => data.location
+    // this.filter.valueChanges.subscribe(filter => this.matTableDataSource!.filter = filter)
     this.toggleHighlight('even', true)
   }
 
@@ -82,36 +82,50 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
     // Needs to be set up after the view is initialized since the data source will look at the sort
     // and paginator's initial values to know what data should be rendered.
     this.matTableDataSource!.paginator = this.paginatorForDataSource
+    // console.log(this.paginatorForDataSource)
+
     this.matTableDataSource!.sort = this.sortForDataSource
+    // console.log(this.sortForDataSource)
   }
 
   ngOnInit() {
     this.connect()
   }
 
-  onClick(loc) {
+  onClick(id) {
 
-    this.dataService.changePlant(loc)
+    this.dataService.changePlant(id)
     this.sidenavOpen = this.uiService.checkDrawer()
 
-    if (this.sidenavOpen === true && this.dataService.currentPlantLocation === loc) {
+    if (this.sidenavOpen === true && this.dataService.currentPlantId === id) {
       this.uiService.closeDrawer()
     } else {
       this.uiService.openDrawer()
     }
 
-    this.dataService.currentPlantLocation = loc
+    this.dataService.currentPlantId = id
 
   }
 
   connect() {
     this.displayedColumns = ['arrow', 'location', 'region', 'yieldData']
-    this._plantDatabase.initialize()
-    this.matTableDataSource!.data = this._plantDatabase.data.slice()
+    this.dataService.getPlants()
+      .then( res => {
+        this.plants = res
+        // console.log(res)
+      })
+      .catch(this.handleError)
+
+    this.matTableDataSource!.data = this.plants
   }
 
   disconnect() {
     this.displayedColumns = []
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error) // for demo purposes only
+    return Promise.reject(error.message || error)
   }
 
   userTrackBy = (index: number, item: PlantData) => {

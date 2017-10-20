@@ -1,10 +1,21 @@
 import { Injectable } from '@angular/core'
 import { InMemoryDbService } from 'angular-in-memory-web-api'
 
+export interface PlantData {
+  id: number
+  lat: number
+  lng: number
+  location: string
+  region: string
+  yieldData: any
+  equipment: any
+  isGoodYield?: boolean
+}
+
 @Injectable()
 export class InMemPlantService implements InMemoryDbService {
   createDb() {
-    const plants = PLANTS
+    const plants: PlantData[] = PLANTS
     return {plants}
   }
 }

@@ -11,6 +11,7 @@ import { DataService } from '../services/data.service'
 export class PlantSelectionComponent implements OnInit {
 
   isMap: boolean
+  currentPlantId: number
   currentPlantLocation: string
   currentPlant: any
   plantData: any
@@ -32,12 +33,17 @@ export class PlantSelectionComponent implements OnInit {
     this.isListHidden = true
 
     dataService.plantChanged$.subscribe(
-      location => {
-        this.currentPlantLocation = location
-        this.currentPlant = this.dataService.plantData.find((item) => {
-          return item.location === location
-        })
+      id => {
+        this.currentPlantId = id
+        this.dataService.getPlant(id)
+          .then( res => this.currentPlant = res )
+          .catch(this.handleError)
       })
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error) // for demo purposes only
+    return Promise.reject(error.message || error)
   }
 
   ngOnInit(): void {

@@ -1,9 +1,9 @@
 import {DataSource} from '@angular/cdk/collections'
 import {Observable} from 'rxjs/Observable'
-import {PlantData} from './plant-database.service'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/operator/map'
 import {PersonDataSource} from './person-data-source'
+import { PlantData } from './in-mem-plant.service'
 
 export interface DetailRow {
   detailRow: boolean

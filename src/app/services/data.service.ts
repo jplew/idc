@@ -6,7 +6,8 @@ import { NotFoundError } from '../common/not-found-error'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/observable/throw'
 import { Subject } from 'rxjs/Subject'
-import {BehaviorSubject} from 'rxjs/BehaviorSubject'
+import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { PlantData } from './in-mem-plant.service'
 
 @Injectable()
 export class DataService {
@@ -15,12 +16,13 @@ export class DataService {
   private plantUrl = 'api/plants/${id}'
   plantData: any
   currentPlantLocation: string
+  currentPlantId: number
   currentPlant: any
   url: string
   nativeMarkers: any[]
 
   // Observable string sources
-  private plantChangedSource = new Subject<string>()
+  private plantChangedSource = new Subject<number>()
   private _loadDataSource = new BehaviorSubject<any[]>([])
 
   // Observable string streams
@@ -28,23 +30,24 @@ export class DataService {
   loadData$ = this._loadDataSource.asObservable()
 
   constructor(private http: Http) {
-    this.url = '../../assets/json/plant-info.json'
     this.nativeMarkers = []
   }
 
-  changePlant(location: string) {
-    this.plantChangedSource.next(location)
+  changePlant(id: number) {
+    this.plantChangedSource.next(id)
   }
 
-  getPlants() {
+  getPlants(): Promise<PlantData[]> {
     return this.http.get(this.plantsUrl)
       .toPromise()
+      .then( res => res.json() )
       .catch(this.handleError)
   }
 
   getPlant(id: number) {
     return this.http.get(`${this.plantsUrl}/${id}`)
       .toPromise()
+      .then( res => res.json() )
       .catch(this.handleError)
   }
 

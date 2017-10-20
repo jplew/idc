@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router'
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component'
 import { MapViewComponent } from '../map-view/map-view.component'
 import { MapComponent } from '../map/map.component'
-import { ListViewComponent } from '../list-view/list-view.component'
 import { PlantSelectionComponent } from '../plant-selection/plant-selection.component'
 
 // import { ComposeMessageComponent } from './compose-message.component'

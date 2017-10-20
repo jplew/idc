@@ -56,20 +56,21 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
 
   markerClicked = (markerObj) => {
     this.sidenavOpen = this.uiService.checkDrawer()
+    console.log(markerObj)
 
     const id = markerObj.id
     const loc = markerObj.location
     this.uiService.closeWindows(loc, this.snazzyIW)
 
-    this.dataService.changePlant(loc)
+    this.dataService.changePlant(id)
 
-    if (this.sidenavOpen === true && this.dataService.currentPlantLocation === loc) {
+    if (this.sidenavOpen === true && this.dataService.currentPlantId === id) {
       this.uiService.closeDrawer()
     } else {
       this.uiService.openDrawer()
     }
 
-    this.dataService.currentPlantLocation = loc
+    this.dataService.currentPlantId = id
 
     // pretty cool, uncomment this to pan to location on each marker click
     // const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
@@ -82,21 +83,16 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     * corresponds to an FPY value greater than 70, red to an FPY value less than
     * 70. App will update the UI based on the 'isGoodYield' boolean introduced
     * here. */
-    this.dataService.getPlant(4)
-      .then( res => {
-        console.log(res)
-      })
 
     this.dataService.getPlants()
       .then(res => {
-        const obj = res.json()
-        obj.forEach(element => {
+        res.forEach(element => {
           const fpyRow = element.yieldData.find(({ cat }) => {
             return cat === 'FPY'
           })
           element.isGoodYield = (fpyRow.value > 70) ? true : false
         })
-        return obj
+        return res
       })
       .then(
       response => {
