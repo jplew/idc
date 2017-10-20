@@ -17,7 +17,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { MapAccessorService } from '../services/map-accessor.service'
 import { UiService } from '../services/ui.service'
 import { DataService } from '../services/data.service'
-import { PlantDatabase } from '../services/plant-database'
+import { PlantDatabaseService } from '../services/plant-database.service'
 import { PlantSearchService } from '../services/plant-search.service'
 import { InMemPlantService } from '../services/in-mem-plant.service'
 
@@ -62,6 +62,7 @@ import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant
     BrowserModule,
     AppRoutingModule,
     HttpModule,
+    InMemoryWebApiModule.forRoot(InMemPlantService),
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
@@ -80,7 +81,7 @@ import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant
     MarkerManager,
     UiService,
     DataService,
-    PlantDatabase,
+    PlantDatabaseService,
     PlantSearchService,
     InMemPlantService
   ],

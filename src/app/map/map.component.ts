@@ -53,8 +53,8 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
   public loadAPIWrapper(map) {
     this.map = map
   }
-  markerClicked = (markerObj) => {
 
+  markerClicked = (markerObj) => {
     this.sidenavOpen = this.uiService.checkDrawer()
 
     const id = markerObj.id
@@ -62,9 +62,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     this.uiService.closeWindows(loc, this.snazzyIW)
 
     this.dataService.changePlant(loc)
-
-    console.log(this.sidenavOpen)
-    console.log(this.dataService.currentPlantLocation)
 
     if (this.sidenavOpen === true && this.dataService.currentPlantLocation === loc) {
       this.uiService.closeDrawer()
@@ -85,8 +82,13 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     * corresponds to an FPY value greater than 70, red to an FPY value less than
     * 70. App will update the UI based on the 'isGoodYield' boolean introduced
     * here. */
-    this.dataService.getAll()
-      .map(res => {
+    this.dataService.getPlant(4)
+      .then( res => {
+        console.log(res)
+      })
+
+    this.dataService.getPlants()
+      .then(res => {
         const obj = res.json()
         obj.forEach(element => {
           const fpyRow = element.yieldData.find(({ cat }) => {
@@ -96,7 +98,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
         })
         return obj
       })
-      .subscribe(
+      .then(
       response => {
         // this 'markers' object will be sent to Google Maps to generate markers
         this.markers = response
@@ -106,7 +108,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
       error => {
         console.log(error)
       })
-
 
   }
 

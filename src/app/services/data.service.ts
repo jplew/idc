@@ -11,6 +11,8 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 @Injectable()
 export class DataService {
 
+  private plantsUrl = 'api/plants'
+  private plantUrl = 'api/plants/${id}'
   plantData: any
   currentPlantLocation: string
   currentPlant: any
@@ -27,7 +29,6 @@ export class DataService {
 
   constructor(private http: Http) {
     this.url = '../../assets/json/plant-info.json'
-    this.emitData()
     this.nativeMarkers = []
   }
 
@@ -35,30 +36,21 @@ export class DataService {
     this.plantChangedSource.next(location)
   }
 
-  emitData() {
-    this.getAll()
-      .map(res => {
-        const obj = res.json()
-        obj.forEach(element => {
-          const fpyRow = element.yieldData.find(({ cat }) => {
-            return cat === 'FPY'
-          })
-          element.isGoodYield = (fpyRow.value > 70) ? true : false
-        })
-        return obj
-      })
-      .subscribe(
-      response => {
-        this._loadDataSource.next(response)
-      },
-      error => {
-        console.log(error)
-      })
+  getPlants() {
+    return this.http.get(this.plantsUrl)
+      .toPromise()
+      .catch(this.handleError)
   }
 
+  getPlant(id: number) {
+    return this.http.get(`${this.plantsUrl}/${id}`)
+      .toPromise()
+      .catch(this.handleError)
+  }
 
-  getAll() {
-    return this.http.get(this.url)
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error) // for demo purposes only
+    return Promise.reject(error.message || error)
   }
 
 }

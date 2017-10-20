@@ -1,5 +1,5 @@
 import {Component, ViewChild, AfterViewInit, OnInit, Input, Inject} from '@angular/core'
-import {PlantDatabase, PlantData} from '../services/plant-database'
+import {PlantDatabaseService, PlantData} from '../services/plant-database.service'
 import {PersonDataSource} from '../services/person-data-source'
 import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material'
 import {DetailRow, PersonDetailDataSource} from '../services/person-detail-data-source'
@@ -60,7 +60,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialog: MatDialog,
-    public _plantDatabase: PlantDatabase,
+    public _plantDatabase: PlantDatabaseService,
     private uiService: UiService,
     private dataService: DataService
     ) {

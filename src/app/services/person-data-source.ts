@@ -1,12 +1,12 @@
 import {MatPaginator, MatSort} from '@angular/material'
 import {DataSource} from '@angular/cdk/collections'
 import {Observable} from 'rxjs/Observable'
-import {PlantDatabase, PlantData} from './plant-database'
+import {PlantDatabaseService, PlantData} from './plant-database.service'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/operator/map'
 
 export class PersonDataSource extends DataSource<any> {
-  constructor(private _plantDatabase: PlantDatabase,
+  constructor(private _plantDatabase: PlantDatabaseService,
               private _paginator: MatPaginator,
               private _sort: MatSort) {
     super()

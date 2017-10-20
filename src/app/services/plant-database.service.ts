@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core'
 import {PLANTS} from '../dataset/plants'
 import {BehaviorSubject} from 'rxjs/BehaviorSubject'
+import 'rxjs/add/operator/toPromise'
 
 export let LATEST_ID = 0
 
@@ -11,7 +12,7 @@ export interface PlantData {
 }
 
 @Injectable()
-export class PlantDatabase {
+export class PlantDatabaseService {
   dataChange: BehaviorSubject<PlantData[]> = new BehaviorSubject<PlantData[]>([])
 
   get data(): PlantData[] { return this.dataChange.value }
