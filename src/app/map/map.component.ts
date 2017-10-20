@@ -128,24 +128,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
 
       })
 
-    // this.myMarkers = this.agmMarkers
-    // for (const i of this.agmMarkers) {
-    //   console.log(i)
-    // }
-    // this.agmMarkers.forEach(element => {
-    //   console.log(element)
-    // })
-
-    // this.myMarkers = this.agmMarkers.foreach(element => {
-    //   // console.log(element)
-    //   // this._markerManager.getNativeMarker(element)
-    //   console.log('Heyo', this._markerManager.getNativeMarker(element))
-    //   // return this._markerManager.getNativeMarker(element)
-    //   //  this._markerManager.getNativeMarker(element)
-    //   // .then( marker => marker )
-    // })
-    // console.log(this.myMarkers)
-
   }
 
   ngOnDestroy(): void {
@@ -162,39 +144,9 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     this.agmMarkers = []
     this.agmMarkers.length = 0
 
-    // console.log('Destroy! ', this.agmMarkers)
-
-    // console.log(this._mapAccessor.markers.values())
-
-    // console.log(this._markerManager)
-
-    // this._mapAccessor.nativeMap = this.map
-
-    // console.log(this._mapAccessor.markerManager)
-    // this._markerManager = this._mapAccessor.markerManager
-
-    // const nativeMarkers = this.agmMarkers.foreach(element => {
-    //   console.log(element)
-    //   this._markerManager.getNativeMarker(element)
-    //   console.log('Heyo', this._markerManager.getNativeMarker(element))
-    //   // return this._markerManager.getNativeMarker(element)
-    //   //  this._markerManager.getNativeMarker(element)
-    //   // .then( marker => marker )
-    // })
-    // console.log(nativeMarkers)
-
   }
 
-
-  // ngOnDestroy(): void {
-  //   this.snazzyIW = []
-  // }
-
   mapClicked($event: MouseEvent) {
-    // console.log('I was clicked')
-    // this.infoWindow.forEach(element => {
-    //   element.close()
-    // })
     this.uiService.toggleDrawer()
   }
 
@@ -212,9 +164,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
         return latLngBounds.getSouthWest().lat()
       })
     ls.then(x => this.latSouth = x)
-
-    // console.log('Lat North: ', this.latNorth)
-    // console.log('Lat South: ', this.latSouth)
 
     let newLat
 
@@ -248,22 +197,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     }
   }
 
-
-  // addMarker(marker: AgmMarker) {
-  //   const markerPromise = this._mapsWrapper.createMarker({
-  //     position: {lat: marker.latitude, lng: marker.longitude},
-  //     label: marker.label,
-  //     draggable: marker.draggable,
-  //     icon: marker.iconUrl,
-  //     opacity: marker.opacity,
-  //     visible: marker.visible,
-  //     zIndex: marker.zIndex,
-  //     title: marker.title,
-  //     clickable: marker.clickable
-  //   })
-  //   this._markers.set(marker, markerPromise);
-  // }
-
   setMarkerFocus(location: any): void {
     const marker = this._mapAccessor.getMarker(location)
     this._markerManager.getNativeMarker(marker)
@@ -272,15 +205,4 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     //   this.googleMap.panTo(location)
   }
 
-
 }
-
-
-// just an interface for type safety.
-// interface Marker {
-//   lat: number
-//   lng: number
-//   title?: string
-//   label?: string
-//   draggable?: boolean
-// }

@@ -9,7 +9,9 @@
     <ng-container matColumnDef="arrow">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"><img src="../../assets/images/icon-right-{{ row.yieldData[4].value > 70 ? 'green' : 'red' }}.png" alt="arrow right"></mat-cell>
+      <mat-cell *matCellDef="let row">
+        <img src="../../assets/images/icon-right-{{ row.yieldData[4].value > 70 ? 'green' : 'red' }}.png" alt="arrow right">
+      </mat-cell>
     </ng-container>
     
     <!-- Column Definition: Name -->

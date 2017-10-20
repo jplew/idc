@@ -112,7 +112,7 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
     this.dataService.getPlants()
       .then( res => {
         this.plants = res
-        // console.log(res)
+        console.log(res)
       })
       .catch(this.handleError)
 

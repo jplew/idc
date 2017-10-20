@@ -48,7 +48,6 @@ export class PlantSelectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.uiService.setSidenav(this.sidenav)
-    // this.dataService.getPlants()
   }
   showView(view) {
     if (view === 'map') {
