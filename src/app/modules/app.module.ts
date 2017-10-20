@@ -12,11 +12,14 @@ import { AgmCoreModule, GoogleMapsAPIWrapper, MarkerManager, AgmMarker } from '@
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window'
 import { TreeModule } from 'angular-tree-component'
 import { NgxPopperModule } from 'ngx-popper'
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api'
 
 import { MapAccessorService } from '../services/map-accessor.service'
 import { UiService } from '../services/ui.service'
 import { DataService } from '../services/data.service'
 import { PlantDatabase } from '../services/plant-database'
+import { PlantSearchService } from '../services/plant-search.service'
+import { InMemPlantService } from '../services/in-mem-plant.service'
 
 import { MarkerAccessorDirective } from '../directives/marker-accessor.directive'
 
@@ -34,8 +37,7 @@ import { ListViewComponent } from '../list-view/list-view.component'
 import { PlantSelectionComponent } from '../plant-selection/plant-selection.component'
 import { TableDemoComponent } from '../table-demo/table-demo.component'
 import { ListDialogComponent } from '../list-dialog/list-dialog.component'
-import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant.component';
-import { PlantSearchService } from '../plant-search.service'
+import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant.component'
 
 @NgModule({
   declarations: [
@@ -79,7 +81,8 @@ import { PlantSearchService } from '../plant-search.service'
     UiService,
     DataService,
     PlantDatabase,
-    PlantSearchService
+    PlantSearchService,
+    InMemPlantService
   ],
   entryComponents: [
     ListDialogComponent,

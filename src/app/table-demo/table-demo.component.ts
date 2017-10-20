@@ -6,8 +6,8 @@ import {DetailRow, PersonDetailDataSource} from '../services/person-detail-data-
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import {FormControl} from '@angular/forms'
 import { ListDialogComponent } from '../list-dialog/list-dialog.component'
-import { UiService } from '../services/ui.service';
-import { DataService } from '../services/data.service';
+import { UiService } from '../services/ui.service'
+import { DataService } from '../services/data.service'
 
 export type UserProperties = 'arrow' | 'location' | 'region' | 'yieldData' | undefined
 
