@@ -73,8 +73,8 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
         default: return ''
       }
     }
-    // this.matTableDataSource.filterTermAccessor = (data: PlantData) => data.location
-    // this.filter.valueChanges.subscribe(filter => this.matTableDataSource!.filter = filter)
+    this.matTableDataSource.filterTermAccessor = (data: PlantData) => data.location
+    this.filter.valueChanges.subscribe(filter => this.matTableDataSource!.filter = filter)
     this.toggleHighlight('even', true)
   }
 

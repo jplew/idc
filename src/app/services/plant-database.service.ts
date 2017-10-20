@@ -2,10 +2,9 @@ import {Injectable} from '@angular/core'
 import {PLANTS} from '../dataset/plants'
 import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 import 'rxjs/add/operator/toPromise'
-import { PlantData } from './in-mem-plant.service'
 export let LATEST_ID = 0
 
-export interface PlantDetails {
+export interface PlantData {
   location: string
   region: string
   yieldData: any
@@ -32,13 +31,9 @@ export class PlantDatabaseService {
 
     const copiedData = this.data.slice()
     copiedData.push({
-      id: thisPlant.id,
-      lat: thisPlant.lat,
-      lng: thisPlant.lng,
       location: thisPlant.location,
       region: thisPlant.region,
-      yieldData: thisPlant.yieldData,
-      equipment: thisPlant.equipment
+      yieldData: thisPlant.yieldData
     })
 
     this.dataChange.next(copiedData)

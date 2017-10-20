@@ -1,0 +1,72 @@
+<div class="table-container mat-table-example">
+  <mat-table 
+    [dataSource]="matTableDataSource" 
+    [trackBy]="userTrackBy" 
+    matSort
+    #sortForDataSource="matSort">
+
+    <!-- Column Definition: Name -->
+    <ng-container matColumnDef="arrow">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"><img src="../../assets/images/icon-right-{{ row.yieldData[4].value > 70 ? 'green' : 'red' }}.png" alt="arrow right"></mat-cell>
+    </ng-container>
+    
+    <!-- Column Definition: Name -->
+    <ng-container matColumnDef="location">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Plant Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+
+        <div class="popper-wrapper" 
+          #popper 
+          [popper]="popperContent" 
+          [popperShowOnStart]="false" 
+          [popperTrigger]="'hover'" 
+          [popperPlacement]="'right'"
+          (click)="onClick(row.location)">
+          {{row.location}}
+        </div>
+        
+        <popper-content #popperContent>
+          <app-list-dialog [data]="row"></app-list-dialog>
+        </popper-content>
+
+      </mat-cell>
+    </ng-container>
+
+    <!-- Column Definition: Color -->
+    <ng-container matColumnDef="region">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Region
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.region}} </mat-cell>
+    </ng-container>
+
+    <!-- Column Definition: Location -->
+    <ng-container matColumnDef="yieldData">
+      <mat-header-cell *matHeaderCellDef 
+                       mat-sort-header>
+        Yield
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="{{ row.yieldData[4].value > 70 ? 'accent' : 'warn' }}"> {{ row.yieldData[4].value }} %</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;
+                         let first = first; let last = last; let even = even; let odd = odd"
+             [class.row-highlight-even]="even" ></mat-row>
+
+  </mat-table>
+
+  <mat-paginator #paginatorForDataSource
+                 [length]="_plantDatabase.data.length"
+                 [pageSizeOptions]="[10, 25, 50, 100]">
+  </mat-paginator>
+
+
+<mat-form-field>
+  <input matInput [formControl]="filter">
+</mat-form-field>
+Above me
