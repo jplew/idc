@@ -55,6 +55,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
   }
 
   markerClicked = (markerObj) => {
+    this.uiService.closeDrawer()
     this.sidenavOpen = this.uiService.checkDrawer()
 
     const id = markerObj.id
@@ -66,7 +67,9 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     if (this.sidenavOpen === true && this.dataService.currentPlantId === id) {
       this.uiService.closeDrawer()
     } else {
-      this.uiService.openDrawer()
+      setTimeout( () => {
+        this.uiService.openDrawer()
+      }, 400)
     }
 
     this.dataService.currentPlantId = id
