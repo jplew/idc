@@ -140,7 +140,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
       element = null
     })
     this.dataService.nativeMarkers.length = 0
-    // console.log(this.map)
     this.agmMarkers = []
     this.agmMarkers.length = 0
 

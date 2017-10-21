@@ -12,9 +12,18 @@
     <div id="form-search" fxFlexAlign="end">
 
       <mat-form-field class="example-full-width">
-        <input class="mat-body-1" type="search" matInput placeholder="Plant Search">
+        <input class="mat-body-1" type="search" matInput placeholder="Plant Search" #searchBox id="search-box" (keyup)="search(searchBox.value)">
+        <input />
+        
         <mat-icon class="search-icon" matSuffix>search</mat-icon>
       </mat-form-field>
+
+      <div>
+        <div *ngFor="let plant of plants | async"
+            (click)="gotoDetail(hero)" class="search-result" >
+          {{hero.name}}
+        </div>
+      </div>
 
     </div>
     
