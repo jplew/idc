@@ -6,7 +6,6 @@ import { DataService } from '../services/data.service'
 @Component({
   selector: 'app-plant-selection',
   templateUrl: './plant-selection.component.html',
-  providers: [UiService, DataService]
 })
 export class PlantSelectionComponent implements OnInit {
 

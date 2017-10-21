@@ -7,7 +7,9 @@ export class UiService {
 
   private sidenav: MatSidenav
 
-  constructor() { }
+  constructor() {
+    
+  }
 
   public setSidenav(sidenav: MatSidenav) {
     this.sidenav = sidenav
@@ -43,6 +45,8 @@ export class UiService {
   }
 
   checkDrawer(): boolean {
+    console.log(this.sidenav)
+    
     return this.sidenav.opened
   }
 
