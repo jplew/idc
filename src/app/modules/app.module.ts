@@ -37,6 +37,7 @@ import { PlantSelectionComponent } from '../plant-selection/plant-selection.comp
 import { TableDemoComponent } from '../table-demo/table-demo.component'
 import { ListDialogComponent } from '../list-dialog/list-dialog.component'
 import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant.component'
+import { SearchFieldComponent } from '../search-field/search-field.component'
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ListDialogPlantComponent } from '../list-dialog-plant/list-dialog-plant
     TableDemoComponent,
     ListDialogComponent,
     ListDialogPlantComponent,
+    SearchFieldComponent,
   ],
   imports: [
     BrowserModule,

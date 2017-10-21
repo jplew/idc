@@ -1,372 +1,5 @@
 export const PLANTS = [
   {
-    'id': 0,
-    'lat': -33.8934219,
-    'lng': 151.20404600000006,
-    'location': 'Sydney',
-    'region': 'Oceania',
-    'yieldData': [
-      {
-        'cat': 'PPM',
-        'value': 89.0
-      },
-      {
-        'cat': 'COQ',
-        'value': 87.1
-      },
-      {
-        'cat': 'Scrap',
-        'value': 0.4
-      },
-      {
-        'cat': 'Sigma',
-        'value': 57
-      },
-      {
-        'cat': 'FPY',
-        'value': 80
-      }
-    ],
-    'equipment': [
-      {
-        'name': 'Reactor',
-        'value': 100,
-        'children': [
-          {
-            'name': 'W7573B',
-            'value': 0,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W7575',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W757300M219',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          }
-        ]
-      },
-      {
-        'name': 'Blender 1',
-        'value': 50,
-        'children': [
-          {
-            'name': 'W7573B',
-            'value': 0,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W7575',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W757300M219',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          }
-        ]
-      },
-      {
-        'name': 'Blender 2',
-        'value': 100,
-        'children': [
-          {
-            'name': 'W7573B',
-            'value': 0,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W7575',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W757300M219',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          }
-        ]
-      },
-      {
-        'name': 'Extruder',
-        'value': 100,
-        'children': [
-          {
-            'name': 'W7573B',
-            'value': 0,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W7575',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          },
-          {
-            'name': 'W757300M219',
-            'value': 100,
-            'children': [
-              {
-                'name': 'Batch 123',
-                'value': 100
-              },
-              {
-                'name': 'Batch 124',
-                'value': 50
-              },
-              {
-                'name': 'Batch 125',
-                'value': 100
-              },
-              {
-                'name': 'Batch 126',
-                'value': 100
-              },
-              {
-                'name': 'Batch 127',
-                'value': 100
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     'id': 1,
     'lat': 1.28304,
     'lng': 103.85199319999992,
@@ -7732,6 +7365,373 @@ export const PLANTS = [
       {
         'cat': 'FPY',
         'value': 69.9
+      }
+    ],
+    'equipment': [
+      {
+        'name': 'Reactor',
+        'value': 100,
+        'children': [
+          {
+            'name': 'W7573B',
+            'value': 0,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W7575',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W757300M219',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          }
+        ]
+      },
+      {
+        'name': 'Blender 1',
+        'value': 50,
+        'children': [
+          {
+            'name': 'W7573B',
+            'value': 0,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W7575',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W757300M219',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          }
+        ]
+      },
+      {
+        'name': 'Blender 2',
+        'value': 100,
+        'children': [
+          {
+            'name': 'W7573B',
+            'value': 0,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W7575',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W757300M219',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          }
+        ]
+      },
+      {
+        'name': 'Extruder',
+        'value': 100,
+        'children': [
+          {
+            'name': 'W7573B',
+            'value': 0,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W7575',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          },
+          {
+            'name': 'W757300M219',
+            'value': 100,
+            'children': [
+              {
+                'name': 'Batch 123',
+                'value': 100
+              },
+              {
+                'name': 'Batch 124',
+                'value': 50
+              },
+              {
+                'name': 'Batch 125',
+                'value': 100
+              },
+              {
+                'name': 'Batch 126',
+                'value': 100
+              },
+              {
+                'name': 'Batch 127',
+                'value': 100
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    'id': 22,
+    'lat': -33.8934219,
+    'lng': 151.20404600000006,
+    'location': 'Sydney',
+    'region': 'Oceania',
+    'yieldData': [
+      {
+        'cat': 'PPM',
+        'value': 89.0
+      },
+      {
+        'cat': 'COQ',
+        'value': 87.1
+      },
+      {
+        'cat': 'Scrap',
+        'value': 0.4
+      },
+      {
+        'cat': 'Sigma',
+        'value': 57
+      },
+      {
+        'cat': 'FPY',
+        'value': 80
       }
     ],
     'equipment': [

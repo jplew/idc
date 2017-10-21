@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise'
 export let LATEST_ID = 0
 
 export interface PlantData {
+  id: number
   location: string
   region: string
   yieldData: any
@@ -31,6 +32,7 @@ export class PlantDatabaseService {
 
     const copiedData = this.data.slice()
     copiedData.push({
+      id: thisPlant.id,
       location: thisPlant.location,
       region: thisPlant.region,
       yieldData: thisPlant.yieldData

@@ -8,24 +8,7 @@
   <span class="fill-remaining-space"></span>
 
   <span class="nav-bg-grey">
-    
-    <div id="form-search" fxFlexAlign="end">
-
-      <mat-form-field class="example-full-width">
-        <input class="mat-body-1" type="search" matInput placeholder="Plant Search" #searchBox id="search-box" (keyup)="search(searchBox.value)">
-        
-        <mat-icon class="search-icon" matSuffix>search</mat-icon>
-      </mat-form-field>
-
-      <div>
-        <div *ngFor="let plant of plants | async"
-            (click)="getPlantDetails(plant)" class="search-result" >
-          {{plant.location}}
-        </div>
-      </div>
-
-    </div>
-    
+    <app-search-field></app-search-field>    
   </span>
 
   <mat-icon class="nav-icon">notifications_none</mat-icon>

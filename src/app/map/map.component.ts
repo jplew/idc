@@ -56,7 +56,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
 
   markerClicked = (markerObj) => {
     this.sidenavOpen = this.uiService.checkDrawer()
-    console.log(markerObj)
 
     const id = markerObj.id
     const loc = markerObj.location
