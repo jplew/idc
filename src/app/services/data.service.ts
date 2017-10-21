@@ -37,18 +37,14 @@ export class DataService {
     this.plantChangedSource.next(id)
   }
 
-  getPlants(): Promise<PlantData[]> {
+  getPlants(): Observable<PlantData[]> {
     return this.http.get(this.plantsUrl)
-      .toPromise()
-      .then( res => res.json() )
-      .catch(this.handleError)
+      .map( res => res.json() )
   }
 
   getPlant(id: number) {
     return this.http.get(`${this.plantsUrl}/${id}`)
-      .toPromise()
-      .then( res => res.json() )
-      .catch(this.handleError)
+      .map( res => res.json() )
   }
 
   private handleError(error: any): Promise<any> {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core'
+import { Component, OnInit, ViewChild, Input, ChangeDetectionStrategy } from '@angular/core'
 import { UiService } from '../services/ui.service'
 import { MatSidenav } from '@angular/material'
 import { DataService } from '../services/data.service'
@@ -6,6 +6,7 @@ import { DataService } from '../services/data.service'
 @Component({
   selector: 'app-plant-selection',
   templateUrl: './plant-selection.component.html',
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlantSelectionComponent implements OnInit {
 
@@ -35,8 +36,14 @@ export class PlantSelectionComponent implements OnInit {
       id => {
         this.currentPlantId = id
         this.dataService.getPlant(id)
-          .then( res => this.currentPlant = res )
-          .catch(this.handleError)
+          .subscribe(
+            res => {
+              this.currentPlant = res
+            },
+            error => {
+              this.handleError(error)
+            }
+          )
       })
   }
 
@@ -49,6 +56,7 @@ export class PlantSelectionComponent implements OnInit {
     this.uiService.setSidenav(this.sidenav)
   }
   showView(view) {
+
     if (view === 'map') {
       this.isMapHidden = false
       this.isListHidden = true

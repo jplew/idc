@@ -1,4 +1,13 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, OnDestroy, AfterContentInit, Input } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ViewChildren,
+  OnDestroy,
+  AfterContentInit,
+  Input,
+  ChangeDetectorRef } from '@angular/core'
 import { GoogleMap } from '@agm/core/services/google-maps-types'
 import { AgmMap, AgmMarker, MarkerManager, GoogleMapsAPIWrapper, AgmInfoWindow } from '@agm/core'
 import { MapAccessorService } from '../services/map-accessor.service'
@@ -39,6 +48,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
   iconBad = '../../assets/images/location-red.png'
 
   constructor(
+    private cd: ChangeDetectorRef,
     private dataService: DataService,
     private uiService: UiService,
     private _apiWrapper: GoogleMapsAPIWrapper,
@@ -55,8 +65,8 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
   }
 
   markerClicked = (markerObj) => {
-    this.uiService.closeDrawer()
     this.sidenavOpen = this.uiService.checkDrawer()
+    this.uiService.closeDrawer()
 
     const id = markerObj.id
     const loc = markerObj.location
@@ -69,15 +79,18 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     } else {
       setTimeout( () => {
         this.uiService.openDrawer()
-      }, 400)
+      }, 350)
     }
 
     this.dataService.currentPlantId = id
+
+    // this.cd.detectChanges()
 
     // pretty cool, uncomment this to pan to location on each marker click
     // const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
     // this.map.panTo(position)
   }
+
 
   ngOnInit() {
     /*
@@ -87,7 +100,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     * here. */
 
     this.dataService.getPlants()
-      .then(res => {
+      .map(res => {
         res.forEach(element => {
           const fpyRow = element.yieldData.find(({ cat }) => {
             return cat === 'FPY'
@@ -96,7 +109,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
         })
         return res
       })
-      .then(
+      .subscribe(
       response => {
         // this 'markers' object will be sent to Google Maps to generate markers
         this.markers = response

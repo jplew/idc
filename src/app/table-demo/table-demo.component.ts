@@ -93,11 +93,14 @@ export class TableDemoComponent implements OnInit, AfterViewInit {
 
     this.dataService.changePlant(id)
     this.sidenavOpen = this.uiService.checkDrawer()
+    this.uiService.closeDrawer()
 
     if (this.sidenavOpen === true && this.dataService.currentPlantId === id) {
       this.uiService.closeDrawer()
     } else {
-      this.uiService.openDrawer()
+      setTimeout( () => {
+        this.uiService.openDrawer()
+      }, 350)
     }
 
     this.dataService.currentPlantId = id
