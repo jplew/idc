@@ -58,6 +58,18 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     this.sidenavOpen = false
     this.lat = 51.678418
     this.lng = 7.809007
+
+    dataService.latLngChanged$.subscribe(
+      coords => {
+        // this.closeAllWindows()
+
+        this.lat = coords[0]
+        this.lng = coords[1]
+
+        const position = new google.maps.LatLng(this.lat, this.lng)
+        this.map.panTo(position)
+
+      })
   }
 
   public loadAPIWrapper(map) {
@@ -65,12 +77,14 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
   }
 
   markerClicked = (markerObj) => {
+
     this.sidenavOpen = this.uiService.checkDrawer()
     this.uiService.closeDrawer()
 
     const id = markerObj.id
     const loc = markerObj.location
     this.uiService.closeWindows(loc, this.snazzyIW)
+
 
     this.dataService.changePlant(id)
 
@@ -79,7 +93,7 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     } else {
       setTimeout( () => {
         this.uiService.openDrawer()
-      }, 350)
+      }, 380)
     }
 
     this.dataService.currentPlantId = id
@@ -87,10 +101,13 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
     // this.cd.detectChanges()
 
     // pretty cool, uncomment this to pan to location on each marker click
-    // const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
-    // this.map.panTo(position)
+    const position = new google.maps.LatLng(markerObj.lat, markerObj.lng)
+    this.map.panTo(position)
   }
 
+  closeAllWindows() {
+    this.uiService.closeAllWindows(this.snazzyIW)
+  }
 
   ngOnInit() {
     /*

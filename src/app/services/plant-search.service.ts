@@ -9,12 +9,14 @@ import { PlantData } from './in-mem-plant.service'
 @Injectable()
 export class PlantSearchService {
 
+  private existingRegion: any
+
   constructor(private http: Http) {}
 
   search(term: string): Observable<PlantData[]> {
     return this.http.get(`api/plants/?location=${term}`)
       .map( res => {
-        // console.log(res.json())
+
         const data = res.json()
         const results = []
 
@@ -22,36 +24,29 @@ export class PlantSearchService {
 
           const element = data[i]
 
-          let existingRegion = results.find( x => {
-            return x.name === element.region
+          this.existingRegion = results.find( result => {
+            return result.region === element.region
           })
-          console.log(existingRegion)
 
-          // if the region has not been added yet, then add it.
-          if (i === 0) {
+          // create a new region (continent) object only if one doesn't already exist
+          if (!this.existingRegion) {
             const regionObj: any = {}
-            regionObj.name = element.region
+            regionObj.region = element.region
+            regionObj.locations = []
+
             results.push(regionObj)
-            existingRegion = regionObj
-            existingRegion.locations = []
-          } else {
-            if (existingRegion) {
-              console.log('Region exists already')
-              return
-            } else {
-              console.log('Region does not exist yet')
-              const regionObj: any = {}
-              regionObj.name = element.region
-              results.push(regionObj)
-              existingRegion = regionObj
-              existingRegion.locations = []
-            }
+
+            this.existingRegion = regionObj
           }
 
-          const locationObj = {}
-          locationObj['name'] = element.location
-          locationObj['fpy'] = element.yieldData[4].value
-          existingRegion.locations.push(locationObj)
+          const locationObj: any = {}
+          locationObj.id = element.id
+          locationObj.lat = element.lat
+          locationObj.lng = element.lng
+          locationObj.name = element.location
+          locationObj.fpy = element.yieldData[4].value
+
+          this.existingRegion.locations.push(locationObj)
 
         }
 
@@ -59,31 +54,6 @@ export class PlantSearchService {
 
         return results
 
-        // data.forEach(element => {
-
-        //   results.forEach( ( e, i ) => {
-
-        //     console.log(i)
-
-
-        //     if ( e.name && e.name === element.region ) {
-        //       console.log('already exists')
-        //       return
-        //     } else {
-        //       console.log('region doesn\'t exist yet')
-        //       const myRegionObj: any = {}
-        //       myRegionObj.name = element.region
-        //       results.push(regionObj)
-        //     }
-        //   })
-        //   console.log(results)
-
-        //   const currentObj = results.find( obj => {
-        //     return obj.name === element.region
-        //   })
-        //   console.log(currentObj)
-
-        // })
       })
   }
 

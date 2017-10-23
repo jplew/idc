@@ -15,6 +15,12 @@ export class UiService {
     this.sidenav = sidenav
   }
 
+  public closeAllWindows(windows) {
+    windows.forEach(window => {
+      window._closeInfoWindow()
+    })
+  }
+
   public closeWindows(loc, windows) {
     // console.log(windows)
 

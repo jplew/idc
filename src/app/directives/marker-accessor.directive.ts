@@ -48,6 +48,8 @@ export class MarkerAccessorDirective implements OnDestroy, AfterContentInit {
             const clickWindow = this.snazzyIW.find((item) => {
               return item.maxWidth === 700
             })
+            this.dataService.clickWindows.push(clickWindow)
+
             const hoverWindow = this.snazzyIW.find((item) => {
               return item.maxWidth === 900
             })

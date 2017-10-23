@@ -17,10 +17,17 @@ import 'rxjs/add/operator/distinctUntilChanged'
 import { PlantSearchService } from '../services/plant-search.service'
 import { PlantData } from '../services/in-mem-plant.service'
 
+declare var google: any
+
 @Component({
   selector: 'app-search-field',
   templateUrl: './search-field.component.html',
-  styles: [],
+  styles: [`
+    input.mat-input-element {
+      color: #555;
+    }
+    `
+  ],
   providers: [PlantSearchService]
 })
 export class SearchFieldComponent implements OnInit {
@@ -58,7 +65,21 @@ export class SearchFieldComponent implements OnInit {
 
   getPlantDetails(plant) {
 
+    this.dataService.clickWindows.forEach(window => {
+      // console.log(window._marker._id)
+      window._closeInfoWindow()
+    })
+
+    const clickWindow = this.dataService.clickWindows.find( x => {
+      return x._marker.title === plant.name
+    })
+    // console.log(clickWindow)
+    clickWindow._openInfoWindow()
+
+    this.dataService.changeLatLng([plant.lat, plant.lng])
+
     this.sidenavOpen = this.uiService.checkDrawer()
+    this.uiService.closeDrawer()
 
     const id = plant.id
     const loc = plant.location
@@ -69,10 +90,13 @@ export class SearchFieldComponent implements OnInit {
          this.dataService.currentPlantId === id) {
       this.uiService.closeDrawer()
     } else {
-      this.uiService.openDrawer()
+      setTimeout( () => {
+        this.uiService.openDrawer()
+      }, 350)
     }
 
     this.dataService.currentPlantId = id
+
   }
 
 }

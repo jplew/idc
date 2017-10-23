@@ -1,35 +1,41 @@
 <div id="form-search" fxFlexAlign="end">
 
   <mat-form-field class="example-full-width">
-    <input class="mat-body-1" type="search" matInput placeholder="Plant Search" #searchBox id="search-box" (keyup)="search(searchBox.value)">
+    <input 
+      class="mat-body-1" 
+      type="search" 
+      matInput 
+      placeholder="Plant Search" 
+      #searchBox id="search-box" 
+      (keyup)="search(searchBox.value)">
 
     <mat-icon class="search-icon" matSuffix>search</mat-icon>
   </mat-form-field>
 
   <div class="search-results-wrapper">
-    <div *ngFor="let region of plants | async" class="search-result">
 
-      {{ region }}
-      <!-- {{ region.name }}
-        <div *ngFor="let location of region.locations | async" class="search-result">
-          {{ location.name }}
-          {{ location.fpy }}
+    <div *ngFor="let region of plants | async" class="search-result-region" >
+
+        <div class="mat-subheading-2">
+          {{ region.region }}
         </div>
 
-      {{ plant.region }}
-      
-      <a (click)="getPlantDetails(plant)">{{ plant.location }}</a> -->
-
-    </div>
-  </div>
-
-  <div class="search-results-wrapper">
-    <div *ngFor="let plant of plants | async" class="search-result">
-
-      {{plant}}
-      {{ plant.region }}
-      
-      <a (click)="getPlantDetails(plant)">{{ plant.location }}</a>
+        <div 
+          class="search-result-location" 
+          fxLayout="row" 
+          fxLayoutAlign="start center" 
+          fxLayoutGap="0" 
+          *ngFor="let location of region.locations" 
+          (click)="getPlantDetails(location)">
+          
+          <span class="sidenav-row-name mat-caption" fxFlex="4 1 auto">
+            {{ location.name }}
+          </span>
+          <span class="fill-remaining-space"></span>
+          <span class="sidenav-row-value mat-caption" fxFlex="1 1 auto">
+            {{ location.fpy }} %
+          </span>
+        </div>
 
     </div>
   </div>

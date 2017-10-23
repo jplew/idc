@@ -20,17 +20,25 @@ export class DataService {
   currentPlant: any
   url: string
   nativeMarkers: any[]
+  clickWindows: any[]
 
   // Observable string sources
   private plantChangedSource = new Subject<number>()
+  private latLngChangedSource = new Subject<number[]>()
   private _loadDataSource = new BehaviorSubject<any[]>([])
 
   // Observable string streams
   plantChanged$ = this.plantChangedSource.asObservable()
   loadData$ = this._loadDataSource.asObservable()
+  latLngChanged$ = this.latLngChangedSource.asObservable()
 
   constructor(private http: Http) {
     this.nativeMarkers = []
+    this.clickWindows = []
+  }
+
+  changeLatLng(coords: number[]) {
+    this.latLngChangedSource.next(coords)
   }
 
   changePlant(id: number) {

@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import '~angular-tree-component/dist/angular-tree-component.css';
+
 
 @include mat-core();
 
@@ -480,20 +480,43 @@ hr {
 }
 
 .search-results-wrapper {
-    border: none;
-    width: 320px;
-    padding: 15px 0 32px 20px;
-    background-color: white;
-    cursor: pointer;
-    margin-left: -20px;
+  border: none;
+  width: 340px;
+  padding: 15px 0 5px;
+  background-color: white;
+  cursor: pointer;
+  margin-left: -20px;
+
+  -webkit-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.25);
+  -moz-box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.25);
+  box-shadow: -1px 0px 14px -2px rgba(0,0,0,0.25)!important;
+  z-index: 1;
 }
  
-.search-result {
-  height: 30px;
+.search-result-region {
+  color: #444;
+  margin-bottom: 15px;
+  padding: 0;
 }
 
-.search-result:hover {
-  color: #eee;
-  background-color: #607D8B;
+.search-result-region .mat-subheading-2 {
+  margin-left: 25px;
+  margin-bottom: 5px;
+
 }
- 
+
+.search-result-location {
+  margin: 0;
+  padding: 8px 35px 8px 40px;
+}
+
+.search-result-location:hover {
+  background-color: #f0f0f0;
+}
+
+.search-result-location a {
+  text-decoration: none;
+}
+.search-result-location a:hover {
+  text-decoration: underline;
+}
