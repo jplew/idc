@@ -6,9 +6,31 @@
     <mat-icon class="search-icon" matSuffix>search</mat-icon>
   </mat-form-field>
 
-  <div>
-    <div *ngFor="let plant of plants | async" (click)="getPlantDetails(plant)" class="search-result">
-      {{plant.location}}
+  <div class="search-results-wrapper">
+    <div *ngFor="let region of plants | async" class="search-result">
+
+      {{ region }}
+      <!-- {{ region.name }}
+        <div *ngFor="let location of region.locations | async" class="search-result">
+          {{ location.name }}
+          {{ location.fpy }}
+        </div>
+
+      {{ plant.region }}
+      
+      <a (click)="getPlantDetails(plant)">{{ plant.location }}</a> -->
+
+    </div>
+  </div>
+
+  <div class="search-results-wrapper">
+    <div *ngFor="let plant of plants | async" class="search-result">
+
+      {{plant}}
+      {{ plant.region }}
+      
+      <a (click)="getPlantDetails(plant)">{{ plant.location }}</a>
+
     </div>
   </div>
 
