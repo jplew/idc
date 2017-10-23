@@ -50,8 +50,6 @@ export class PlantSearchService {
 
         }
 
-        console.log(results)
-
         return results
 
       })

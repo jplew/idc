@@ -35,6 +35,7 @@ export class SearchFieldComponent implements OnInit {
   plants: Observable<PlantData[]>
   sidenavOpen: boolean
   private searchTerms = new Subject<string>()
+  isHidden: boolean
 
   constructor(
     private plantSearchService: PlantSearchService,
@@ -42,15 +43,20 @@ export class SearchFieldComponent implements OnInit {
     private uiService: UiService,
   ) {
     this.sidenavOpen = false
+    this.isHidden = true
   }
 
   ngOnInit() {
     this.plants = this.searchTerms
       .debounceTime(300)
       .distinctUntilChanged()
-      .switchMap(term => term
-        ? this.plantSearchService.search(term)
-        : Observable.of<PlantData[]>([]))
+      .switchMap(term => {
+        if (term) {
+          return this.plantSearchService.search(term)
+        } else {
+          return Observable.of<PlantData[]>([])
+        }
+      })
       .catch(error => {
         // TODO: add real error handling
         console.log(error)
@@ -60,6 +66,7 @@ export class SearchFieldComponent implements OnInit {
 
   // Push a search term into the observable stream.
   search(term: string): void {
+    this.isHidden = false
     this.searchTerms.next(term)
   }
 
@@ -96,6 +103,7 @@ export class SearchFieldComponent implements OnInit {
     }
 
     this.dataService.currentPlantId = id
+    this.isHidden = true
 
   }
 

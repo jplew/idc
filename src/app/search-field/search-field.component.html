@@ -7,12 +7,13 @@
       matInput 
       placeholder="Plant Search" 
       #searchBox id="search-box" 
-      (keyup)="search(searchBox.value)">
+      (keyup)="search(searchBox.value)"
+      (focus)="isHidden=false">
 
     <mat-icon class="search-icon" matSuffix>search</mat-icon>
   </mat-form-field>
 
-  <div class="search-results-wrapper">
+  <div class="search-results-wrapper" [class.isHidden]="isHidden">
 
     <div *ngFor="let region of plants | async" class="search-result-region" >
 
@@ -32,7 +33,7 @@
             {{ location.name }}
           </span>
           <span class="fill-remaining-space"></span>
-          <span class="sidenav-row-value mat-caption" fxFlex="1 1 auto">
+          <span class="sidenav-row-value mat-caption {{ location.fpy > 70 ? 'accent' : 'warn' }}" fxFlex="1 1 auto">
             {{ location.fpy }} %
           </span>
         </div>

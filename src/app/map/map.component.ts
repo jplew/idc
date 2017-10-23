@@ -61,7 +61,6 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, On
 
     dataService.latLngChanged$.subscribe(
       coords => {
-        // this.closeAllWindows()
 
         this.lat = coords[0]
         this.lng = coords[1]
